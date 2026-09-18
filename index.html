@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamantes Express FF | Recargas Rápidas</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>DIAMANTES EXPRESS FF 💎</h1>
+            <p>Recargas rápidas, seguras y al mejor precio</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Formulario del Cliente -->
+        <section class="user-info">
+            <h2>1. Datos de la cuenta</h2>
+            <div class="input-group">
+                <label for="player-id">ID de Jugador (Free Fire):</label>
+                <input type="number" id="player-id" placeholder="Ej: 123456789" required>
+            </div>
+            <div class="input-group" style="margin-top: 15px;">
+                <label for="payment-method">Método de Pago:</label>
+                <select id="payment-method" onchange="switchTab(this.value)">
+                    <option value="saldo">📱 Saldo Móvil (CUP)</option>
+                    <option value="tarjeta">💳 Tarjeta CUP</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Selección de Paquetes - Saldo Móvil -->
+        <section class="packages-section" id="section-saldo">
+            <h2>2. Paquetes Saldo Móvil 📱</h2>
+            <div class="grid">
+                <div class="card" onclick="selectPackage(this, '110 Diamantes (Saldo Móvil)', '285 CUP')">
+                    <div class="card-title">💎 110 Diamantes</div>
+                    <div class="price">285 CUP</div>
+                </div>
+
+                <div class="card" onclick="selectPackage(this, '220 Diamantes (Saldo Móvil)', '570 CUP')">
+                    <div class="card-title">💎 220 Diamantes</div>
+                    <div class="price">570 CUP</div>
+                </div>
+
+                <div class="card" onclick="selectPackage(this, '341 Diamantes (Saldo Móvil)', '855 CUP')">
+                    <div class="card-title">💎 341 Diamantes</div>
+                    <div class="price">855 CUP</div>
+                </div>
+
+                <div class="card" onclick="selectPackage(this, '572 Diamantes (Saldo Móvil)', '1425 CUP')">
+                    <div class="card-title">💎 572 Diamantes</div>
+                    <div class="price">1,425 CUP</div>
+                </div>
+
+                <div class="card" onclick="selectPackage(this, '1166 Diamantes (Saldo Móvil)', '2850 CUP')">
+                    <div class="card-title">💎 1166 Diamantes</div>
+                    <div class="price">2,850 CUP</div>
+                </div>
+
+                <div class="card" onclick="selectPackage(this, '2398 Diamantes (Saldo Móvil)', '5700 CUP')">
+                    <div class="card-title">💎 2398 Diamantes</div>
+                    <div class="price">5,700 CUP</div>
+                </div>
+
+                <div class="card" onclick="selectPackage(this, 'Membresía Semanal (Saldo Móvil)', '855 CUP')">
+                    <div class="card-title">👑 Membresía Semanal</div>
+                    <div class="price">855 CUP</div>
+                </div>
+
+                <div class="card" onclick="selectPackage(this, 'Membresía Mensual (Saldo Móvil)', '3705 CUP')">
+                    <div class="card-title">👑 Membresía Mensual</div>
+                    <div class="price">3,705 CUP</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Selección de Paquetes - Tarjeta CUP -->
+        <section class="packages-section" id="section-tarjeta" style="display: none;">
+            <h2>2. Paquetes Tarjeta CUP 💳</h2>
+            <div class="grid">
+                <div class="card" onclick="selectPackage(this, '110 Diamantes (Tarjeta CUP)', '870 CUP')">
+                    <div class="card-title">💎 110 Diamantes</div>
+                    <div class="price">870 CUP</div>
+                </div>
+
+                <div class="card" onclick="selectPackage(this, '220 Diamantes (Tarjeta CUP)', '1740 CUP')">
+                    <div class="card-title">💎 220 Diamantes</div>
+                    <div class="price">1,740 CUP</div>
+                </div>
+
+                <div class="card" onclick="selectPackage(this, '341 Diamantes (Tarjeta CUP)', '2610 CUP')">
+                    <div class="card-title">💎 341 Diamantes</div>
+                    <div class="price">2,610 CUP</div>
+                </div>
+
+                <div class="card" onclick="selectPackage(this, '572 Diamantes (Tarjeta CUP)', '4350 CUP')">
+                    <div class="card-title">💎 572 Diamantes</div>
+                    <div class="price">4,350 CUP</div>
+                </div>
+
+                <div class="card" onclick="selectPackage(this, '1166 Diamantes (Tarjeta CUP)', '8700 CUP')">
+                    <div class="card-title">💎 1166 Diamantes</div>
+                    <div class="price">8,700 CUP</div>
+                </div>
+
+                <div class="card" onclick="selectPackage(this, '2398 Diamantes (Tarjeta CUP)', '17400 CUP')">
+                    <div class="card-title">💎 2398 Diamantes</div>
+                    <div class="price">17,400 CUP</div>
+                </div>
+
+                <div class="card" onclick="selectPackage(this, 'Membresía Semanal (Tarjeta CUP)', '2610 CUP')">
+                    <div class="card-title">👑 Membresía Semanal</div>
+                    <div class="price">2,610 CUP</div>
+                </div>
+
+                <div class="card" onclick="selectPackage(this, 'Membresía Mensual (Tarjeta CUP)', '11310 CUP')">
+                    <div class="card-title">👑 Membresía Mensual</div>
+                    <div class="price">11,310 CUP</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Botón de Pedido -->
+        <section class="action">
+            <button class="btn-whatsapp" onclick="sendOrder()">
+                🚀 Pedir por WhatsApp
+            </button>
+        </section>
+    </main>
+
+    <footer>
+        <p>© Diamantes Express FF - Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        let selectedProduct = "";
+        let selectedPrice = "";
+
+        function switchTab(type) {
+            document.getElementById('section-saldo').style.display = type === 'saldo' ? 'block' : 'none';
+            document.getElementById('section-tarjeta').style.display = type === 'tarjeta' ? 'block' : 'none';
+            
+            let cards = document.querySelectorAll('.card');
+            cards.forEach(c => c.classList.remove('active'));
+            selectedProduct = "";
+            selectedPrice = "";
+        }
+
+        function selectPackage(element, product, price) {
+            let cards = document.querySelectorAll('.card');
+            cards.forEach(c => c.classList.remove('active'));
+            
+            element.classList.add('active');
+            selectedProduct = product;
+            selectedPrice = price;
+        }
+
+        function sendOrder() {
+            const phoneNumber = "5350299740"; 
+            const playerId = document.getElementById('player-id').value.trim();
+            const paymentMethod = document.getElementById('payment-method').options[document.getElementById('payment-method').selectedIndex].text;
+
+            if (!playerId) {
+                alert("Por favor, ingresa tu ID de jugador.");
+                return;
+            }
+
+            if (!selectedProduct) {
+                alert("Por favor, selecciona un paquete de diamantes o membresía.");
+                return;
+            }
+
+            const message = `Hola *Diamantes Express FF*! 💎%0AQuiero realizar una recarga:%0A%0A📌 *ID Jugador:* ${playerId}%0A💳 *Método de Pago:* ${paymentMethod}%0A📦 *Paquete:* ${selectedProduct}%0A💰 *Precio:* ${selectedPrice}%0A%0A¿Cómo te hago la transferencia/envío?`;
+
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
