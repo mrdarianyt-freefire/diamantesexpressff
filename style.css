@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0d0f12;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    padding-bottom: 40px;
+}
+
+header {
+    background: linear-gradient(135deg, #ff4500, #ff8c00);
+    text-align: center;
+    padding: 30px 15px;
+    box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+}
+
+header h1 {
+    font-family: 'Teko', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+header p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+h2 {
+    font-family: 'Teko', sans-serif;
+    font-size: 1.6rem;
+    color: #ff8c00;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.user-info {
+    background-color: #161a22;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #2a2f3d;
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #3a4050;
+    background-color: #0d0f12;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #ff8c00;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.card {
+    background-color: #161a22;
+    border: 2px solid #2a2f3d;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.card:hover {
+    border-color: #ff8c00;
+    transform: translateY(-2px);
+}
+
+.card.active {
+    border-color: #ff4500;
+    background-color: #241b16;
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.price {
+    color: #00ff88;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.action {
+    margin-top: 30px;
+}
+
+.btn-whatsapp {
+    width: 100%;
+    background-color: #25d366;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    font-family: 'Teko', sans-serif;
+    letter-spacing: 1px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+    transition: background-color 0.2s ease;
+}
+
+.btn-whatsapp:hover {
+    background-color: #1ebd56;
+}
+
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 0.8rem;
+    color: #6c757d;
+}
