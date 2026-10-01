@@ -31,6 +31,13 @@
                     <option value="tarjeta">💳 Tarjeta CUP</option>
                 </select>
             </div>
+            <div class="input-group" style="margin-top: 15px;">
+                <label for="whatsapp-contact">Enviar pedido a:</label>
+                <select id="whatsapp-contact">
+                    <option value="5350299740">🇨🇺 WhatsApp (+53 50299740)</option>
+                    <option value="17059950436">🇨🇦 WhatsApp (+1 705 995 0436)</option>
+                </select>
+            </div>
         </section>
 
         <!-- Selección de Paquetes - Saldo Móvil -->
@@ -161,7 +168,7 @@
         }
 
         function sendOrder() {
-            const phoneNumber = "5350299740"; 
+            const phoneNumber = document.getElementById('whatsapp-contact').value;
             const playerId = document.getElementById('player-id').value.trim();
             const paymentMethod = document.getElementById('payment-method').options[document.getElementById('payment-method').selectedIndex].text;
 
