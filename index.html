@@ -242,7 +242,7 @@
             text-align: center;
             cursor: pointer;
             position: relative;
-            overflow: hidden;
+            overflow: visible; /* Permitir que las partículas salgan fuera de la tarjeta al explotar */
             transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -305,23 +305,25 @@
             color: var(--accent);
         }
 
-        /* EFECTO DE PARTÍCULAS DE DIAMANTE Y BRILLO */
+        /* EFECTO DE PARTÍCULAS INTERNAS Y PRECISAS */
         .sparkle-particle {
             position: absolute;
+            left: 50%;
+            top: 50%;
             pointer-events: none;
-            z-index: 9999;
+            z-index: 99;
             font-size: 1.2rem;
-            animation: floatAndFade 1s ease-out forwards;
+            animation: floatAndFade 0.9s ease-out forwards;
         }
 
         @keyframes floatAndFade {
             0% {
                 opacity: 1;
-                transform: translate(0, 0) scale(1) rotate(0deg);
+                transform: translate(-50%, -50%) scale(1) rotate(0deg);
             }
             100% {
                 opacity: 0;
-                transform: translate(var(--dx), var(--dy)) scale(0.3) rotate(180deg);
+                transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.2) rotate(180deg);
             }
         }
 
@@ -467,50 +469,50 @@
 
             <!-- Paquetes Saldo Móvil -->
             <div class="packages-grid" id="grid-saldo">
-                <div class="pkg-card" onclick="selectPackage(this, '110 Diamantes (Saldo Móvil)', '280 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, '110 Diamantes (Saldo Móvil)', '280 CUP')">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">110 Diamantes</div>
                     <div class="pkg-price">280 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '220 Diamantes (Saldo Móvil)', '560 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, '220 Diamantes (Saldo Móvil)', '560 CUP')">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">220 Diamantes</div>
                     <div class="pkg-price">560 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '341 Diamantes (Saldo Móvil)', '840 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, '341 Diamantes (Saldo Móvil)', '840 CUP')">
                     <span class="badge-popular">Popular</span>
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">341 Diamantes</div>
                     <div class="pkg-price">840 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '572 Diamantes (Saldo Móvil)', '1400 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, '572 Diamantes (Saldo Móvil)', '1400 CUP')">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">572 Diamantes</div>
                     <div class="pkg-price">1,400 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '1166 Diamantes (Saldo Móvil)', '2750 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, '1166 Diamantes (Saldo Móvil)', '2750 CUP')">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">1166 Diamantes</div>
                     <div class="pkg-price">2,750 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '2398 Diamantes (Saldo Móvil)', '5500 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, '2398 Diamantes (Saldo Móvil)', '5500 CUP')">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">2398 Diamantes</div>
                     <div class="pkg-price">5,500 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Semanal (Saldo Móvil)', '840 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Semanal (Saldo Móvil)', '840 CUP')">
                     <div class="pkg-icon">👑</div>
                     <div class="pkg-title">M. Semanal</div>
                     <div class="pkg-price">840 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Mensual (Saldo Móvil)', '3575 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Mensual (Saldo Móvil)', '3575 CUP')">
                     <div class="pkg-icon">👑</div>
                     <div class="pkg-title">M. Mensual</div>
                     <div class="pkg-price">3,575 CUP</div>
@@ -519,50 +521,50 @@
 
             <!-- Paquetes Tarjeta CUP -->
             <div class="packages-grid" id="grid-tarjeta" style="display: none;">
-                <div class="pkg-card" onclick="selectPackage(this, '110 Diamantes (Tarjeta CUP)', '950 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, '110 Diamantes (Tarjeta CUP)', '950 CUP')">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">110 Diamantes</div>
                     <div class="pkg-price">950 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '220 Diamantes (Tarjeta CUP)', '1900 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, '220 Diamantes (Tarjeta CUP)', '1900 CUP')">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">220 Diamantes</div>
                     <div class="pkg-price">1,900 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '341 Diamantes (Tarjeta CUP)', '2850 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, '341 Diamantes (Tarjeta CUP)', '2850 CUP')">
                     <span class="badge-popular">Popular</span>
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">341 Diamantes</div>
                     <div class="pkg-price">2,850 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '572 Diamantes (Tarjeta CUP)', '4750 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, '572 Diamantes (Tarjeta CUP)', '4750 CUP')">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">572 Diamantes</div>
                     <div class="pkg-price">4,750 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '1166 Diamantes (Tarjeta CUP)', '9500 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, '1166 Diamantes (Tarjeta CUP)', '9500 CUP')">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">1166 Diamantes</div>
                     <div class="pkg-price">9,500 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '2398 Diamantes (Tarjeta CUP)', '19000 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, '2398 Diamantes (Tarjeta CUP)', '19000 CUP')">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">2398 Diamantes</div>
                     <div class="pkg-price">19,000 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Semanal (Tarjeta CUP)', '2850 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Semanal (Tarjeta CUP)', '2850 CUP')">
                     <div class="pkg-icon">👑</div>
                     <div class="pkg-title">M. Semanal</div>
                     <div class="pkg-price">2,850 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Mensual (Tarjeta CUP)', '12350 CUP', event)">
+                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Mensual (Tarjeta CUP)', '12350 CUP')">
                     <div class="pkg-icon">👑</div>
                     <div class="pkg-title">M. Mensual</div>
                     <div class="pkg-price">12,350 CUP</div>
@@ -618,7 +620,7 @@
             selectedPrice = "";
         }
 
-        function selectPackage(element, product, price, event) {
+        function selectPackage(element, product, price) {
             let cards = document.querySelectorAll('.pkg-card');
             cards.forEach(c => c.classList.remove('active'));
             
@@ -626,39 +628,32 @@
             selectedProduct = product;
             selectedPrice = price;
 
-            // Lanza la animación de diamantes con brillos
-            createSparkles(event);
+            // Lanza los brillos exactamente dentro de la tarjeta presionada
+            createSparklesInside(element);
         }
 
-        function createSparkles(event) {
+        function createSparklesInside(cardElement) {
             const symbols = ['💎', '✨', '⭐', '⚡'];
-            const count = 12; // Cantidad de partículas por toque
+            const count = 10;
 
             for (let i = 0; i < count; i++) {
                 const particle = document.createElement('span');
                 particle.className = 'sparkle-particle';
                 particle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
 
-                // Posición exacta del clic o toque del usuario
-                const x = event.clientX || (event.touches && event.touches[0].clientX) || window.innerWidth / 2;
-                const y = event.clientY || (event.touches && event.touches[0].clientY) || window.innerHeight / 2;
-
-                particle.style.left = `${x}px`;
-                particle.style.top = `${y}px`;
-
-                // Dirección aleatoria hacia donde explotan los diamantes
-                const dx = (Math.random() - 0.5) * 160 + 'px';
-                const dy = (Math.random() - 0.5) * 160 + 'px';
+                // Direcciones aleatorias desde el centro de la tarjeta
+                const dx = (Math.random() - 0.5) * 140 + 'px';
+                const dy = (Math.random() - 0.5) * 140 + 'px';
 
                 particle.style.setProperty('--dx', dx);
                 particle.style.setProperty('--dy', dy);
 
-                document.body.appendChild(particle);
+                cardElement.appendChild(particle);
 
                 // Eliminar la partícula después de la animación
                 setTimeout(() => {
                     particle.remove();
-                }, 1000);
+                }, 900);
             }
         }
 
