@@ -37,6 +37,7 @@
                 radial-gradient(circle at 85% 80%, rgba(255, 0, 127, 0.08) 0%, transparent 40%);
             background-attachment: fixed;
             padding-bottom: 60px;
+            overflow-x: hidden;
         }
 
         /* Banner Promocional */
@@ -241,18 +242,26 @@
             text-align: center;
             cursor: pointer;
             position: relative;
+            overflow: hidden;
             transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .pkg-card:hover {
             transform: translateY(-4px);
             border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
         }
 
         .pkg-card.active {
-            background: linear-gradient(145deg, rgba(0, 240, 255, 0.2), rgba(10, 12, 22, 0.9));
+            background: linear-gradient(145deg, rgba(0, 240, 255, 0.25), rgba(10, 12, 22, 0.95));
             border: 2px solid var(--primary);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.5), inset 0 0 15px rgba(0, 240, 255, 0.3);
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.2); }
+            100% { box-shadow: 0 0 30px rgba(0, 240, 255, 0.7), inset 0 0 20px rgba(0, 240, 255, 0.4); }
         }
 
         .pkg-card .badge-popular {
@@ -268,12 +277,18 @@
             border-radius: 10px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            z-index: 2;
         }
 
         .pkg-icon {
             font-size: 1.8rem;
             margin-bottom: 6px;
             color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .pkg-card.active .pkg-icon {
+            transform: scale(1.2);
         }
 
         .pkg-title {
@@ -288,6 +303,26 @@
             font-family: 'Orbitron', sans-serif;
             font-weight: 800;
             color: var(--accent);
+        }
+
+        /* EFECTO DE PARTÍCULAS DE DIAMANTE Y BRILLO */
+        .sparkle-particle {
+            position: absolute;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 1.2rem;
+            animation: floatAndFade 1s ease-out forwards;
+        }
+
+        @keyframes floatAndFade {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--dx), var(--dy)) scale(0.3) rotate(180deg);
+            }
         }
 
         /* Banner Pasos de Compra */
@@ -399,12 +434,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="whatsapp-contact"><i class="fa-solid fa-headset"></i> Atendido por:</label>
-                    <select id="whatsapp-contact" class="form-control">
-                        <option value="5350299740">🇨🇺 ADMIN 1</option>
-                        <option value="17059950436">🇺🇸 ADMIN 2</option>
-                    </select>
+                    <label for="player-name"><i class="fa-solid fa-signature"></i> Nombre / Apodo en el Juego:</label>
+                    <input type="text" id="player-name" class="form-control" placeholder="Ej: Moreira_FF (Para verificar)" required>
                 </div>
+            </div>
+
+            <div class="form-group" style="margin-top: 15px;">
+                <label for="whatsapp-contact"><i class="fa-solid fa-headset"></i> Atendido por:</label>
+                <select id="whatsapp-contact" class="form-control">
+                    <option value="5350299740">🇨🇺 ADMIN 1</option>
+                    <option value="17059950436">🇺🇸 ADMIN 2</option>
+                </select>
             </div>
         </section>
 
@@ -427,50 +467,50 @@
 
             <!-- Paquetes Saldo Móvil -->
             <div class="packages-grid" id="grid-saldo">
-                <div class="pkg-card" onclick="selectPackage(this, '110 Diamantes (Saldo Móvil)', '280 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, '110 Diamantes (Saldo Móvil)', '280 CUP', event)">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">110 Diamantes</div>
                     <div class="pkg-price">280 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '220 Diamantes (Saldo Móvil)', '560 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, '220 Diamantes (Saldo Móvil)', '560 CUP', event)">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">220 Diamantes</div>
                     <div class="pkg-price">560 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '341 Diamantes (Saldo Móvil)', '840 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, '341 Diamantes (Saldo Móvil)', '840 CUP', event)">
                     <span class="badge-popular">Popular</span>
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">341 Diamantes</div>
                     <div class="pkg-price">840 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '572 Diamantes (Saldo Móvil)', '1400 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, '572 Diamantes (Saldo Móvil)', '1400 CUP', event)">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">572 Diamantes</div>
                     <div class="pkg-price">1,400 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '1166 Diamantes (Saldo Móvil)', '2750 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, '1166 Diamantes (Saldo Móvil)', '2750 CUP', event)">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">1166 Diamantes</div>
                     <div class="pkg-price">2,750 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '2398 Diamantes (Saldo Móvil)', '5500 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, '2398 Diamantes (Saldo Móvil)', '5500 CUP', event)">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">2398 Diamantes</div>
                     <div class="pkg-price">5,500 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Semanal (Saldo Móvil)', '840 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Semanal (Saldo Móvil)', '840 CUP', event)">
                     <div class="pkg-icon">👑</div>
                     <div class="pkg-title">M. Semanal</div>
                     <div class="pkg-price">840 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Mensual (Saldo Móvil)', '3575 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Mensual (Saldo Móvil)', '3575 CUP', event)">
                     <div class="pkg-icon">👑</div>
                     <div class="pkg-title">M. Mensual</div>
                     <div class="pkg-price">3,575 CUP</div>
@@ -479,53 +519,53 @@
 
             <!-- Paquetes Tarjeta CUP -->
             <div class="packages-grid" id="grid-tarjeta" style="display: none;">
-                <div class="pkg-card" onclick="selectPackage(this, '110 Diamantes (Tarjeta CUP)', '960 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, '110 Diamantes (Tarjeta CUP)', '950 CUP', event)">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">110 Diamantes</div>
-                    <div class="pkg-price">960 CUP</div>
+                    <div class="pkg-price">950 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '220 Diamantes (Tarjeta CUP)', '1920 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, '220 Diamantes (Tarjeta CUP)', '1900 CUP', event)">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">220 Diamantes</div>
-                    <div class="pkg-price">1,920 CUP</div>
+                    <div class="pkg-price">1,900 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '341 Diamantes (Tarjeta CUP)', '2880 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, '341 Diamantes (Tarjeta CUP)', '2850 CUP', event)">
                     <span class="badge-popular">Popular</span>
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">341 Diamantes</div>
-                    <div class="pkg-price">2,880 CUP</div>
+                    <div class="pkg-price">2,850 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '572 Diamantes (Tarjeta CUP)', '4800 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, '572 Diamantes (Tarjeta CUP)', '4750 CUP', event)">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">572 Diamantes</div>
-                    <div class="pkg-price">4,800 CUP</div>
+                    <div class="pkg-price">4,750 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '1166 Diamantes (Tarjeta CUP)', '9600 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, '1166 Diamantes (Tarjeta CUP)', '9500 CUP', event)">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">1166 Diamantes</div>
-                    <div class="pkg-price">9,600 CUP</div>
+                    <div class="pkg-price">9,500 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '2398 Diamantes (Tarjeta CUP)', '19200 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, '2398 Diamantes (Tarjeta CUP)', '19000 CUP', event)">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">2398 Diamantes</div>
-                    <div class="pkg-price">19,200 CUP</div>
+                    <div class="pkg-price">19,000 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Semanal (Tarjeta CUP)', '2880 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Semanal (Tarjeta CUP)', '2850 CUP', event)">
                     <div class="pkg-icon">👑</div>
                     <div class="pkg-title">M. Semanal</div>
-                    <div class="pkg-price">2,880 CUP</div>
+                    <div class="pkg-price">2,850 CUP</div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Mensual (Tarjeta CUP)', '12480 CUP')">
+                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Mensual (Tarjeta CUP)', '12350 CUP', event)">
                     <div class="pkg-icon">👑</div>
                     <div class="pkg-title">M. Mensual</div>
-                    <div class="pkg-price">12,480 CUP</div>
+                    <div class="pkg-price">12,350 CUP</div>
                 </div>
             </div>
 
@@ -533,7 +573,7 @@
             <div class="steps-container">
                 <div class="step-box">
                     <div class="step-number">1</div>
-                    <span>Ingresa tu ID</span>
+                    <span>ID y Nombre</span>
                 </div>
                 <div class="step-box">
                     <div class="step-number">2</div>
@@ -578,21 +618,62 @@
             selectedPrice = "";
         }
 
-        function selectPackage(element, product, price) {
+        function selectPackage(element, product, price, event) {
             let cards = document.querySelectorAll('.pkg-card');
             cards.forEach(c => c.classList.remove('active'));
             
             element.classList.add('active');
             selectedProduct = product;
             selectedPrice = price;
+
+            // Lanza la animación de diamantes con brillos
+            createSparkles(event);
+        }
+
+        function createSparkles(event) {
+            const symbols = ['💎', '✨', '⭐', '⚡'];
+            const count = 12; // Cantidad de partículas por toque
+
+            for (let i = 0; i < count; i++) {
+                const particle = document.createElement('span');
+                particle.className = 'sparkle-particle';
+                particle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+
+                // Posición exacta del clic o toque del usuario
+                const x = event.clientX || (event.touches && event.touches[0].clientX) || window.innerWidth / 2;
+                const y = event.clientY || (event.touches && event.touches[0].clientY) || window.innerHeight / 2;
+
+                particle.style.left = `${x}px`;
+                particle.style.top = `${y}px`;
+
+                // Dirección aleatoria hacia donde explotan los diamantes
+                const dx = (Math.random() - 0.5) * 160 + 'px';
+                const dy = (Math.random() - 0.5) * 160 + 'px';
+
+                particle.style.setProperty('--dx', dx);
+                particle.style.setProperty('--dy', dy);
+
+                document.body.appendChild(particle);
+
+                // Eliminar la partícula después de la animación
+                setTimeout(() => {
+                    particle.remove();
+                }, 1000);
+            }
         }
 
         function sendOrder() {
             const phoneNumber = document.getElementById('whatsapp-contact').value;
             const playerId = document.getElementById('player-id').value.trim();
+            const playerName = document.getElementById('player-name').value.trim();
 
             if (!playerId) {
                 alert("Por favor, ingresa tu ID de jugador de Free Fire.");
+                return;
+            }
+
+            if (!playerName) {
+                alert("Por favor, ingresa tu Nombre/Apodo del juego para verificar la cuenta.");
                 return;
             }
 
@@ -601,7 +682,7 @@
                 return;
             }
 
-            const message = `Hola *Diamantes Express FF*! 💎%0AQuiero realizar una recarga:%0A%0A📌 *ID Jugador:* ${playerId}%0A💳 *Método de Pago:* ${activePayment}%0A📦 *Paquete:* ${selectedProduct}%0A💰 *Precio:* ${selectedPrice}%0A%0A¿Cómo te hago la transferencia/envío?`;
+            const message = `Hola *Diamantes Express FF*! 💎%0AQuiero realizar una recarga:%0A%0A📌 *ID Jugador:* ${playerId}%0A👤 *Nombre en juego:* ${playerName}%0A💳 *Método de Pago:* ${activePayment}%0A📦 *Paquete:* ${selectedProduct}%0A💰 *Precio:* ${selectedPrice}%0A%0A¿Cómo te hago la transferencia/envío?`;
 
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
             window.open(whatsappUrl, '_blank');
