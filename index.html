@@ -242,7 +242,7 @@
             text-align: center;
             cursor: pointer;
             position: relative;
-            overflow: visible; /* Permitir que las partículas salgan fuera de la tarjeta al explotar */
+            overflow: visible;
             transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -305,7 +305,7 @@
             color: var(--accent);
         }
 
-        /* EFECTO DE PARTÍCULAS INTERNAS Y PRECISAS */
+        /* Partículas internas */
         .sparkle-particle {
             position: absolute;
             left: 50%;
@@ -325,6 +325,75 @@
                 opacity: 0;
                 transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.2) rotate(180deg);
             }
+        }
+
+        /* SECCIÓN COMUNIDAD / CANAL DE WHATSAPP */
+        .community-card {
+            background: linear-gradient(135deg, rgba(22, 27, 46, 0.9), rgba(10, 12, 22, 0.95));
+            border: 1px solid var(--primary);
+            border-radius: 18px;
+            padding: 25px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
+        }
+
+        .community-img-container {
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto 15px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+
+        .community-img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .community-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .community-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            line-height: 1.4;
+        }
+
+        .community-desc a {
+            color: var(--primary);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .btn-channel {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(90deg, #25D366, #128C7E);
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.95rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            transition: 0.3s;
+        }
+
+        .btn-channel:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.5);
         }
 
         /* Banner Pasos de Compra */
@@ -375,6 +444,7 @@
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 25px;
         }
 
         .btn-order:hover {
@@ -592,6 +662,20 @@
         <button class="btn-order" onclick="sendOrder()">
             <i class="fa-brands fa-whatsapp" style="font-size: 1.4rem;"></i> Pedir por WhatsApp
         </button>
+
+        <!-- SECCIÓN DE COMUNIDAD / CANAL DE WHATSAPP -->
+        <div class="community-card">
+            <div class="community-img-container">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=60" alt="Comunidad Oficial">
+            </div>
+            <h3 class="community-title">¡Comunidad Oficial!</h3>
+            <p class="community-desc">
+                Entérate de ofertas exclusivas y mira todas mis referencias de los clientes. Únete a nuestra <a href="https://whatsapp.com/channel/0029VaqrQkTHLHQgIe1LSq3F" target="_blank">Comunidad</a>
+            </p>
+            <a href="https://whatsapp.com/channel/0029VaqrQkTHLHQgIe1LSq3F" target="_blank" class="btn-channel">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Únete a nuestro canal
+            </a>
+        </div>
 
     </main>
 
