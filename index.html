@@ -961,7 +961,7 @@
             <button class="chat-close-btn" onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="chat-messages" id="chatMessages">
-            <div class="msg msg-bot">¡Hola, crack! 🤖💎 Soy el asistente de <b>Diamantes Express FF</b>. ¿Tienes dudas sobre recargas, pagos o quieres que te tire una rima? ¡Pregúntame!</div>
+            <div class="msg msg-bot">¡Hola, crack! 🤖💎 Soy el asistente virtual inteligente de <b>Diamantes Express FF</b>. ¿Qué te trae por aquí hoy?</div>
         </div>
         <div class="chat-input-area">
             <input type="text" class="chat-input" id="chatInput" placeholder="Escribe aquí..." onkeypress="handleKeyPress(event)">
@@ -1110,7 +1110,7 @@
             window.open(whatsappUrl, '_blank');
         }
 
-        /* LÓGICA DE PRIORIDAD ABSOLUTA PARA EL CHATBOT */
+        /* LÓGICA DE APERTURA DEL CHAT */
         function toggleChat() {
             document.getElementById('chatWindow').classList.toggle('open');
         }
@@ -1130,7 +1130,7 @@
             setTimeout(() => {
                 let reply = getBotResponse(text.toLowerCase());
                 addMessage(reply, 'bot');
-            }, 350);
+            }, 300);
         }
 
         function addMessage(text, sender) {
@@ -1146,51 +1146,57 @@
             return arr[Math.floor(Math.random() * arr.length)];
         }
 
-        /* MOTOR DE INTELIGENCIA CON ORDEN ESTRICTO DE PRIORIDAD */
-        function getBotResponse(input) {
+        /* MOTOR INTELIGENTE LOCAL AVANZADO (SIMULADOR DE IA PROFESIONAL) */
+        function getBotResponse(txt) {
             
-            // PRIORIDAD 1: DINERO, PLATA, REGALOS O FONDOS INSUFICIENTES (SE EVALÚA PRIMERO ANTES DE NADA)
-            if (input.includes('dinero') || input.includes('plata') || input.includes('regal') || input.includes('gratis') || input.includes('fiado') || input.includes('dame') || input.includes('donam') || input.includes('rebaja') || input.includes('descuento') || input.includes('moneda') || input.includes('pobre') || input.includes('sin')) {
+            // 1. INTENCIÓN DE POBREZA / FALTA DE DINERO / REGALOS / FIADO
+            if (
+                txt.includes('dinero') || txt.includes('plata') || txt.includes('regal') || 
+                txt.includes('gratis') || txt.includes('fiado') || txt.includes('dame') || 
+                txt.includes('donam') || txt.includes('rebaja') || txt.includes('descuento') || 
+                txt.includes('pobre') || txt.includes('sin un kilo') || txt.includes('110 gratis') ||
+                (txt.includes('no') && (txt.includes('tengo') || txt.includes('puedo')))
+            ) {
                 const pool = [
-                    "Jajaja ¡quisieras, crack! 😜 💎 Si le regalo diamantes a todos, el jefe Darian me deshusa el procesador. ¡Mira los precios de la web, si ya están tirados por el suelo! 🔥",
-                    "¿Sin plata, bro? 😭 Te entiendo, ¡a todos nos pasa! Pero junta un poquitico de saldo y pídele a los admins la recarga de 110 que te sale súper económica. 🔥",
-                    "¿Regalo o diamantes gratis? ¡Ojalá Garena me regalara la ropa del pase veterano! 🤖😂 Aquí todo es legal y al mejor precio de Cuba, ¡junta la platica y pide ahí arriba!",
-                    "Hermano, si te fío o te regalo diamantes me quedo comiendo cables y jugando con datos de 1kbps 📉😂. ¡Apoya el negocio del bro Darian!"
+                    "Jajaja ¡quisieras, crack! 😜 💎 Si le regalo diamantes a todos, el jefe Darian me deshusa el procesador. ¡Mira los precios de la web, si ya están baratísimos! 🔥",
+                    "¿Sin plata o sin dinero, bro? 😭 Te entiendo perfectamente, ¡a todos nos pasa! Pero junta un poquitico y aprovecha la recarga de 110 que te sale súper económica arriba. 🔥",
+                    "¿Regalos o diamantes gratis? ¡Ojalá Garena me regalara la ropa del pase veterano! 🤖😂 Aquí todo es 100% legal, junta la platica y pídelos en la web.",
+                    "Hermano, si te fío o te regalo diamantes me quedo comiendo cables y jugando con datos móviles de 1kbps 📉😂. ¡Apoya el negocio del bro Darian!"
                 ];
                 return getRandom(pool);
             }
 
-            // PRIORIDAD 2: RIMAS Y EGO DE LA TIENDA
-            if (input.includes('mejor') || input.includes('rima') || input.includes('poema') || input.includes('pagina') || input.includes('tienda') || input.includes('canta') || input.includes('creador') || input.includes('darian') || input.includes('dueño') || input.includes('admin')) {
+            // 2. INTENCIÓN DE RIMAS Y CREADOR (DARIAN)
+            if (txt.includes('mejor') || txt.includes('rima') || txt.includes('poema') || txt.includes('pagina') || txt.includes('tienda') || txt.includes('canta') || txt.includes('creador') || txt.includes('darian') || txt.includes('dueño') || txt.includes('admin')) {
                 const pool = [
                     "<i>¿Que cuál es la mejor web para recargar?<br>¡Pues Diamantes Express es la que manda a cantar!<br>Precios baratos, entrega veloz,<br>¡aquí te tratamos con amor y con dos!<br>No busques más por ahí, mi hermano,<br>que los mejores diamantes te los damos directo a la mano. 💎🔥</i>",
-                    "El jefe supremo de esto es <b>Darian Moreira</b> 👑, un crack total. ¡Y los admins te atienden volando al tocar el botón verde de WhatsApp!"
+                    "El jefe supremo y creador de esto es <b>Darian Moreira</b> 👑, un crack total. ¡Y los admins te atienden volando al tocar el botón verde de WhatsApp!"
                 ];
                 return getRandom(pool);
             }
 
-            // PRIORIDAD 3: TIEMPOS Y HORARIOS
-            if (input.includes('tarda') || input.includes('demora') || input.includes('tiempo') || input.includes('rapido') || input.includes('velocidad') || input.includes('hora') || input.includes('abierto') || input.includes('atienden')) {
+            // 3. INTENCIÓN DE VELOCIDAD Y TIEMPOS
+            if (txt.includes('tarda') || txt.includes('demora') || txt.includes('tiempo') || txt.includes('rapido') || txt.includes('velocidad') || txt.includes('hora') || txt.includes('abierto') || txt.includes('atienden')) {
                 return "¡Más rápido que un corredor con Alok! ⚡ Las recargas caen en menos de 5 minutos después de confirmar tu pago con el admin.";
             }
 
-            // PRIORIDAD 4: MÉTODOS DE PAGO Y ETECSA
-            if (input.includes('pago') || input.includes('pagar') || input.includes('tarjeta') || input.includes('saldo') || input.includes('cup') || input.includes('transferencia') || input.includes('etecsa') || input.includes('bono') || input.includes('mlc') || input.includes('dolar')) {
-                return "Aceptamos 📱 <b>Saldo Móvil</b> y 💳 <b>Tarjeta CUP</b>. ¡E incluso puedes pedir de ambos en el mismo carrito y la web te separa los totales!";
+            // 4. INTENCIÓN DE MÉTODOS DE PAGO
+            if (txt.includes('pago') || txt.includes('pagar') || txt.includes('tarjeta') || txt.includes('saldo') || txt.includes('cup') || txt.includes('transferencia') || txt.includes('etecsa') || txt.includes('bono') || txt.includes('mlc') || txt.includes('dolar')) {
+                return "Aceptamos 📱 <b>Saldo Móvil</b> y 💳 <b>Tarjeta CUP</b> de forma directa en Cuba. ¡E incluso puedes pedir de ambos en el mismo carrito y la web te separa los totales!";
             }
 
-            // PRIORIDAD 5: CÓMO COMPRAR Y PAQUETES
-            if (input.includes('compro') || input.includes('pido') || input.includes('pedido') || input.includes('pasos') || input.includes('funciona') || input.includes('110') || input.includes('membresia') || input.includes('semanal') || input.includes('mensual')) {
+            // 5. INTENCIÓN DE CÓMO COMPRAR Y PAQUETES
+            if (txt.includes('compro') || txt.includes('pido') || txt.includes('pedido') || txt.includes('pasos') || txt.includes('funciona') || txt.includes('110') || txt.includes('membresia') || txt.includes('semanal') || txt.includes('mensual')) {
                 return "Es facilísimo, crack: 1️⃣ Pon tu ID y Nombre de Free Fire. 2️⃣ Selecciona las cantidades con los botones (+). 3️⃣ Toca el botón verde de pedir por WhatsApp. 🛒";
             }
 
-            // PRIORIDAD 6: SEGURIDAD Y ID
-            if (input.includes('seguro') || input.includes('estafa') || input.includes('confiable') || input.includes('garantia') || input.includes('referencias') || input.includes('equivoque') || input.includes('id')) {
-                return "¡100% Seguro y Confiable! 🛡️ Únete a nuestro canal oficial de WhatsApp para ver todas las referencias reales de nuestros clientes felices.";
+            // 6. INTENCIÓN DE SEGURIDAD Y CONFIANZA
+            if (txt.includes('seguro') || txt.includes('estafa') || txt.includes('confiable') || txt.includes('garantia') || txt.includes('referencias') || txt.includes('equivoque') || txt.includes('id')) {
+                return "¡100% Seguro y Confiable! 🛡️ Únete a nuestro canal oficial de WhatsApp abajo en la web para ver todas las referencias reales de nuestros clientes.";
             }
 
-            // PRIORIDAD 7: SALUDOS SIMPLES (Última opción para saludos generales)
-            if (input.includes('hola') || input.includes('buenas') || input.includes('que tal') || input.includes('klk') || input.includes('saludos') || input.includes('bro')) {
+            // 7. SALUDOS GENERALES
+            if (txt.includes('hola') || txt.includes('buenas') || txt.includes('que tal') || txt.includes('klk') || txt.includes('saludos') || txt.includes('bro') || txt.includes('oye')) {
                 const saludos = [
                     "¡Qué onda, máquina! 😎 ¿Listo para llenar la cuenta de diamantes o membresías hoy?",
                     "¡Epa, leyenda! 💎 ¿Qué recarga nos aventamos hoy para reventar clasificatoria?"
@@ -1198,8 +1204,13 @@
                 return getRandom(saludos);
             }
 
-            // RESPUESTA POR DEFECTO PARA CUALQUIER OTRA COSA
-            return "¡Aparato, esa pregunta me bugueó los circuitos! 🤖😂 Arma tu pedido arriba y háblale directo a los admins por WhatsApp.";
+            // 8. RESPUESTA DINÁMICA POR DEFECTO (SIMULANDO IA AVANZADA)
+            const respuestasLocas = [
+                "¡Aparato, esa pregunta me dejó pensando como bot en zona segura! 🤖😂 Arma tu pedido arriba y escríbele directo a los admins por WhatsApp para que te atiendan al toque.",
+                "¡Jajaja tremendo headshot con esa pregunta! 🎯💥 Para cualquier duda personalizada con tu cuenta, toca el botón verde de WhatsApp.",
+                "¡Procesador al 100% de potencia! 🤖🔥 Configura tus diamantes en la tienda o escríbele al equipo de soporte por WhatsApp."
+            ];
+            return getRandom(respuestasLocas);
         }
     </script>
 </body>
