@@ -36,7 +36,7 @@
                 radial-gradient(circle at 15% 20%, rgba(0, 240, 255, 0.08) 0%, transparent 40%),
                 radial-gradient(circle at 85% 80%, rgba(255, 0, 127, 0.08) 0%, transparent 40%);
             background-attachment: fixed;
-            padding-bottom: 60px;
+            padding-bottom: 80px;
             overflow-x: hidden;
         }
 
@@ -334,7 +334,7 @@
             text-align: center;
         }
 
-        /* Resumen de pedido flotante / sección */
+        /* Resumen de pedido */
         .order-summary {
             background: rgba(0, 240, 255, 0.05);
             border: 1px dashed var(--primary);
@@ -477,6 +477,157 @@
         .btn-order:hover {
             transform: scale(1.02);
             box-shadow: 0 10px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        /* ESTILOS DEL CHATBOT FLOTANTE IA */
+        .chat-widget-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+            color: #fff;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9999;
+            transition: transform 0.3s ease;
+        }
+
+        .chat-widget-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .chat-window {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 330px;
+            max-width: calc(100vw - 40px);
+            height: 450px;
+            background: rgba(10, 12, 22, 0.95);
+            border: 1px solid var(--primary);
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 9998;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+            transform: scale(0);
+            transform-origin: bottom right;
+        }
+
+        .chat-window.open {
+            transform: scale(1);
+        }
+
+        .chat-header {
+            background: linear-gradient(90deg, rgba(0,240,255,0.2), rgba(255,0,127,0.2));
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-header-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .chat-status {
+            font-size: 0.7rem;
+            color: #25D366;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .chat-close-btn {
+            background: none;
+            border: none;
+            color: #a0aec0;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 12px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 0.85rem;
+        }
+
+        .msg {
+            max-width: 82%;
+            padding: 10px 12px;
+            border-radius: 12px;
+            line-height: 1.4;
+        }
+
+        .msg-bot {
+            background: rgba(0, 240, 255, 0.15);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            color: #fff;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .msg-user {
+            background: linear-gradient(135deg, var(--secondary), #7928ca);
+            color: #fff;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .chat-input-area {
+            display: flex;
+            padding: 8px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.4);
+        }
+
+        .chat-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #fff;
+            padding: 8px;
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        .chat-send-btn {
+            background: var(--primary);
+            border: none;
+            color: #0a0c16;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         footer {
@@ -793,6 +944,31 @@
 
     </main>
 
+    <!-- WIDGET CHATBOT FLOTANTE IA -->
+    <div class="chat-widget-btn" onclick="toggleChat()">
+        <i class="fa-solid fa-robot"></i>
+    </div>
+
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <div class="chat-header-info">
+                <i class="fa-solid fa-robot" style="color: var(--primary); font-size: 1.2rem;"></i>
+                <div>
+                    <div class="chat-header-title">Express Bot IA</div>
+                    <div class="chat-status"><i class="fa-solid fa-circle" style="font-size: 0.5rem;"></i> En línea</div>
+                </div>
+            </div>
+            <button class="chat-close-btn" onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="msg msg-bot">¡Hola, crack! 🤖💎 Soy el asistente de <b>Diamantes Express FF</b>. ¿Tienes dudas sobre recargas, pagos o quieres que te tire una rima? ¡Pregúntame!</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Escribe aquí..." onkeypress="handleKeyPress(event)">
+            <button class="chat-send-btn" onclick="sendChatMessage()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
     <footer>
         <p>© Diamantes Express FF — Todos los derechos reservados</p>
     </footer>
@@ -826,10 +1002,8 @@
                 delete cart[key];
             }
 
-            // Actualizar número en la interfaz
             document.getElementById(`qty-${type[0]}-${index}`).innerText = newQty;
             
-            // Cambiar resaltado de tarjeta
             let cardElement = document.getElementById(`card-${type[0]}-${index}`);
             if (newQty > 0) {
                 cardElement.classList.add('selected');
@@ -921,7 +1095,6 @@
                 orderDetails += `%0A  - *${item.qty}x* ${item.name} — *${subtotal.toLocaleString()} CUP*`;
             });
 
-            // Construcción del desglose del total
             let totalSection = "";
             if (totalSaldo > 0 && totalTarjeta > 0) {
                 totalSection = `💰 *TOTAL A PAGAR:*%0A📱 *Saldo Móvil:* *${totalSaldo.toLocaleString()} CUP*%0A💳 *Tarjeta CUP:* *${totalTarjeta.toLocaleString()} CUP*`;
@@ -935,6 +1108,94 @@
 
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
             window.open(whatsappUrl, '_blank');
+        }
+
+        /* LÓGICA DEL CHATBOT DE IA */
+        function toggleChat() {
+            document.getElementById('chatWindow').classList.toggle('open');
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') sendChatMessage();
+        }
+
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            addMessage(text, 'user');
+            input.value = '';
+
+            setTimeout(() => {
+                let reply = getBotResponse(text.toLowerCase());
+                addMessage(reply, 'bot');
+            }, 500);
+        }
+
+        function addMessage(text, sender) {
+            const box = document.getElementById('chatMessages');
+            const div = document.createElement('div');
+            div.className = `msg msg-${sender}`;
+            div.innerHTML = text;
+            box.appendChild(div);
+            box.scrollTop = box.scrollHeight;
+        }
+
+        /* MOTOR DE INTELIGENCIA Y REPERTORIO DE PREGUNTAS */
+        function getBotResponse(input) {
+            // 1. Rimas y ego sobre la tienda / cuál es la mejor web
+            if (input.includes('mejor web') || input.includes('por que comprar') || input.includes('rima') || input.includes('por qué esta pagina') || input.includes('quien es la mejor') || input.includes('por que esta tienda') || input.includes('la mejor tienda')) {
+                return "<i>¿Que cuál es la mejor web para recargar?<br>¡Pues Diamantes Express es la que manda a cantar!<br>Precios baratos, entrega veloz,<br>¡aquí te tratamos con amor y con dos!<br>No busques más por ahí, mi hermano,<br>que los mejores diamantes te los damos directo a la mano. 💎🔥</i>";
+            }
+
+            // 2. Tiempos de entrega
+            if (input.includes('tarda') || input.includes('demora') || input.includes('cuanto tiempo') || input.includes('tiempo') || input.includes('rapido') || input.includes('velocidad') || input.includes('cuanto demora')) {
+                return "¡Súper rápido, crack! ⚡ Las recargas se entregan en menos de 5 minutos después de confirmar tu pago con el admin.";
+            }
+
+            // 3. Formas de pago
+            if (input.includes('pago') || input.includes('pagar') || input.includes('tarjeta') || input.includes('saldo') || input.includes('cup') || input.includes('transferencia') || input.includes('metodos')) {
+                return "Aceptamos <b>Saldo Móvil</b> y <b>Tarjeta CUP</b>. 💳📲 ¡Incluso puedes pedir de ambos en el mismo carrito!";
+            }
+
+            // 4. Cómo comprar
+            if (input.includes('como compro') || input.includes('como pido') || input.includes('como hacer pedido') || input.includes('comprar') || input.includes('pasos') || input.includes('como funciona')) {
+                return "Es facilísimo: 1️⃣ Pon tu ID y Nombre de Free Fire. 2️⃣ Selecciona la cantidad con el botón (+). 3️⃣ Toca el botón verde de pedir por WhatsApp. 🛒";
+            }
+
+            // 5. Seguridad y Confianza
+            if (input.includes('seguro') || input.includes('estafa') || input.includes('confiable') || input.includes('garantia') || input.includes('referencias') || input.includes('legal')) {
+                return "¡100% Seguro y Confiable! 🛡️ Llevamos tiempo atendiendo a la comunidad. Únete a nuestro canal oficial para ver todas las referencias reales de nuestros clientes.";
+            }
+
+            // 6. Diamantes Gratis / Descuentos
+            if (input.includes('gratis') || input.includes('regalam') || input.includes('descuento') || input.includes('fiado') || input.includes('rebaja')) {
+                return "Jajaja ¡quisieras, bro! 😜 Los diamantes cuestan, pero en Diamantes Express tenemos los precios más ajustados y regalados de toda Cuba. 🔥";
+            }
+
+            // 7. Saludos
+            if (input.includes('hola') || input.includes('buenas') || input.includes('que tal') || input.includes('klk') || input.includes('ey') || input.includes('bro') || input.includes('crack')) {
+                return "¡Qué onda, máquina! 😎 ¿Listo para llenar la cuenta de diamantes o membresías hoy?";
+            }
+
+            // 8. Quién es el dueño / Admin
+            if (input.includes('dueño') || input.includes('admin') || input.includes('creador') || input.includes('darian') || input.includes('quien hizo')) {
+                return "El jefe de esto es <b>Darian Moreira</b>, un crack visionario del gaming. 😎👑 ¡Y tenemos a dos Admins listos para atenderte por WhatsApp!";
+            }
+
+            // 9. Bromas de Gamer / Free Fire
+            if (input.includes('juegas') || input.includes('manco') || input.includes('free fire') || input.includes('bot') || input.includes('skin')) {
+                return "Yo no juego porque mi emulador tiene tanto lag que me banean, ¡pero me sé el catálogo de skins completo! 🤖🎮";
+            }
+
+            // 10. Membresías
+            if (input.includes('membresia') || input.includes('semanal') || input.includes('mensual') || input.includes('pase')) {
+                return "¡Tenemos Membresía Semanal y Mensual disponibles tanto en Saldo Móvil como en Tarjeta CUP! 👑 Échales un ojo en el catálogo.";
+            }
+
+            // Respuesta general / fallback
+            return "¡Ey, esa pregunta estuvo dura! 🤖 Para detalles específicos, configura tu pedido y habla directamente con nuestros admins tocando el botón verde de WhatsApp. 📲💎";
         }
     </script>
 </body>
