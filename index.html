@@ -1142,60 +1142,60 @@
             box.scrollTop = box.scrollHeight;
         }
 
-        /* MOTOR DE INTELIGENCIA Y REPERTORIO DE PREGUNTAS */
+        /* MOTOR DE INTELIGENCIA Y REPERTORIO DE PREGUNTAS MEJORADO */
         function getBotResponse(input) {
             // 1. Rimas y ego sobre la tienda / cuál es la mejor web
-            if (input.includes('mejor web') || input.includes('por que comprar') || input.includes('rima') || input.includes('por qué esta pagina') || input.includes('quien es la mejor') || input.includes('por que esta tienda') || input.includes('la mejor tienda')) {
+            if (input.includes('mejor web') || input.includes('por que comprar') || input.includes('rima') || input.includes('por qué esta pagina') || input.includes('quien es la mejor') || input.includes('por que esta tienda') || input.includes('la mejor tienda') || input.includes('poema') || input.includes('canta')) {
                 return "<i>¿Que cuál es la mejor web para recargar?<br>¡Pues Diamantes Express es la que manda a cantar!<br>Precios baratos, entrega veloz,<br>¡aquí te tratamos con amor y con dos!<br>No busques más por ahí, mi hermano,<br>que los mejores diamantes te los damos directo a la mano. 💎🔥</i>";
             }
 
-            // 2. Tiempos de entrega
+            // 2. Pedir diamantes gratis, regalos, fianza o descuentos
+            if (input.includes('regala') || input.includes('regalam') || input.includes('regalas') || input.includes('dame') || input.includes('gratis') || input.includes('fiado') || input.includes('descuento') || input.includes('rebaja') || input.includes('free') || input.includes('doname')) {
+                return "Jajaja ¡quisieras, bro! 😜 💎 El jefe Darian no me deja regalar nada porque si no me descuenta del sueldo. ¡Pero mira los precios de la web, si ya están casi regalados! 🔥";
+            }
+
+            // 3. Tiempos de entrega
             if (input.includes('tarda') || input.includes('demora') || input.includes('cuanto tiempo') || input.includes('tiempo') || input.includes('rapido') || input.includes('velocidad') || input.includes('cuanto demora')) {
-                return "¡Súper rápido, crack! ⚡ Las recargas se entregan en menos de 5 minutos después de confirmar tu pago con el admin.";
+                return "¡Más rápido que un corredor con Alok! ⚡ Las recargas caen en menos de 5 minutos después de confirmar tu pago con el admin.";
             }
 
-            // 3. Formas de pago
+            // 4. Formas de pago
             if (input.includes('pago') || input.includes('pagar') || input.includes('tarjeta') || input.includes('saldo') || input.includes('cup') || input.includes('transferencia') || input.includes('metodos')) {
-                return "Aceptamos <b>Saldo Móvil</b> y <b>Tarjeta CUP</b>. 💳📲 ¡Incluso puedes pedir de ambos en el mismo carrito!";
+                return "Aceptamos <b>Saldo Móvil</b> y <b>Tarjeta CUP</b>. 💳📲 ¡Incluso puedes pedir de ambos en el mismo carrito y la web te separa los totales!";
             }
 
-            // 4. Cómo comprar
+            // 5. Cómo comprar
             if (input.includes('como compro') || input.includes('como pido') || input.includes('como hacer pedido') || input.includes('comprar') || input.includes('pasos') || input.includes('como funciona')) {
-                return "Es facilísimo: 1️⃣ Pon tu ID y Nombre de Free Fire. 2️⃣ Selecciona la cantidad con el botón (+). 3️⃣ Toca el botón verde de pedir por WhatsApp. 🛒";
+                return "Es facilísimo, crack: 1️⃣ Pon tu ID y Nombre de Free Fire. 2️⃣ Selecciona las cantidades con los botones (+). 3️⃣ Toca el botón verde de pedir por WhatsApp. 🛒";
             }
 
-            // 5. Seguridad y Confianza
+            // 6. Seguridad y Confianza
             if (input.includes('seguro') || input.includes('estafa') || input.includes('confiable') || input.includes('garantia') || input.includes('referencias') || input.includes('legal')) {
-                return "¡100% Seguro y Confiable! 🛡️ Llevamos tiempo atendiendo a la comunidad. Únete a nuestro canal oficial para ver todas las referencias reales de nuestros clientes.";
-            }
-
-            // 6. Diamantes Gratis / Descuentos
-            if (input.includes('gratis') || input.includes('regalam') || input.includes('descuento') || input.includes('fiado') || input.includes('rebaja')) {
-                return "Jajaja ¡quisieras, bro! 😜 Los diamantes cuestan, pero en Diamantes Express tenemos los precios más ajustados y regalados de toda Cuba. 🔥";
+                return "¡100% Seguro y Confiable! 🛡️ Únete a nuestro canal oficial para ver todas las referencias reales de nuestros clientes felices.";
             }
 
             // 7. Saludos
-            if (input.includes('hola') || input.includes('buenas') || input.includes('que tal') || input.includes('klk') || input.includes('ey') || input.includes('bro') || input.includes('crack')) {
+            if (input.includes('hola') || input.includes('buenas') || input.includes('que tal') || input.includes('klk') || input.includes('ey') || input.includes('bro') || input.includes('crack') || input.includes('saludos')) {
                 return "¡Qué onda, máquina! 😎 ¿Listo para llenar la cuenta de diamantes o membresías hoy?";
             }
 
             // 8. Quién es el dueño / Admin
             if (input.includes('dueño') || input.includes('admin') || input.includes('creador') || input.includes('darian') || input.includes('quien hizo')) {
-                return "El jefe de esto es <b>Darian Moreira</b>, un crack visionario del gaming. 😎👑 ¡Y tenemos a dos Admins listos para atenderte por WhatsApp!";
+                return "El jefe supremo de esto es <b>Darian Moreira</b>, un crack del gaming. 😎👑 ¡Y tenemos a dos Admins listos en WhatsApp para atenderte!";
             }
 
-            // 9. Bromas de Gamer / Free Fire
-            if (input.includes('juegas') || input.includes('manco') || input.includes('free fire') || input.includes('bot') || input.includes('skin')) {
-                return "Yo no juego porque mi emulador tiene tanto lag que me banean, ¡pero me sé el catálogo de skins completo! 🤖🎮";
+            // 9. Bromas de Gamer / Free Fire / Manco
+            if (input.includes('juegas') || input.includes('manco') || input.includes('free fire') || input.includes('bot') || input.includes('skin') || input.includes('pudo') || input.includes('pro')) {
+                return "Yo no juego Free Fire porque mi emulador tiene tanto lag que me banean por bot, ¡pero me sé todas las skins de memoria! 🤖🎮";
             }
 
             // 10. Membresías
             if (input.includes('membresia') || input.includes('semanal') || input.includes('mensual') || input.includes('pase')) {
-                return "¡Tenemos Membresía Semanal y Mensual disponibles tanto en Saldo Móvil como en Tarjeta CUP! 👑 Échales un ojo en el catálogo.";
+                return "¡Tenemos Membresía Semanal y Mensual tanto en Saldo Móvil como en Tarjeta CUP! 👑 Chequéalas en el menú arriba.";
             }
 
-            // Respuesta general / fallback
-            return "¡Ey, esa pregunta estuvo dura! 🤖 Para detalles específicos, configura tu pedido y habla directamente con nuestros admins tocando el botón verde de WhatsApp. 📲💎";
+            // Respuesta divertida por defecto para cualquier otra cosa rara que pregunten
+            return "¡Aparato, esa pregunta me bugueó el procesador! 🤖😂 Si quieres algo específico o una recarga especial, arma tu pedido arriba y háblale a los admins por WhatsApp. 📲💎";
         }
     </script>
 </body>
