@@ -798,9 +798,7 @@
     </footer>
 
     <script>
-        // Almacenamiento de elementos seleccionados (key -> {name, price, qty, type})
         let cart = {};
-        let activePaymentTab = 'saldo';
 
         function switchTab(type) {
             document.getElementById('grid-saldo').style.display = type === 'saldo' ? 'grid' : 'none';
@@ -808,14 +806,12 @@
             
             document.getElementById('tab-saldo').classList.toggle('active', type === 'saldo');
             document.getElementById('tab-tarjeta').classList.toggle('active', type === 'tarjeta');
-
-            activePaymentTab = type;
         }
 
         function updateQty(type, index, name, unitPrice, change) {
             let key = type + '-' + index;
             if (!cart[key]) {
-                cart[key] = { name: name, price: unitPrice, qty: 0, type: type === 'saldo' ? 'Saldo Móvil' : 'Tarjeta CUP' };
+                cart[key] = { name: name, price: unitPrice, qty: 0, category: type };
             }
 
             let newQty = cart[key].qty + change;
@@ -830,10 +826,10 @@
                 delete cart[key];
             }
 
-            // Actualizar visualizador de cantidad en pantalla
+            // Actualizar número en la interfaz
             document.getElementById(`qty-${type[0]}-${index}`).innerText = newQty;
             
-            // Cambiar estilo de la tarjeta
+            // Cambiar resaltado de tarjeta
             let cardElement = document.getElementById(`card-${type[0]}-${index}`);
             if (newQty > 0) {
                 cardElement.classList.add('selected');
@@ -856,17 +852,32 @@
             }
 
             let textHtml = "";
-            let grandTotal = 0;
+            let totalSaldo = 0;
+            let totalTarjeta = 0;
 
             keys.forEach(k => {
                 let item = cart[k];
                 let subtotal = item.price * item.qty;
-                grandTotal += subtotal;
+                if (item.category === 'saldo') {
+                    totalSaldo += subtotal;
+                } else {
+                    totalTarjeta += subtotal;
+                }
                 textHtml += `• ${item.qty}x ${item.name} (${subtotal.toLocaleString()} CUP)<br>`;
             });
 
             summaryTextEl.innerHTML = textHtml;
-            summaryTotalEl.innerText = `Total: ${grandTotal.toLocaleString()} CUP`;
+
+            let totalDisplay = "";
+            if (totalSaldo > 0 && totalTarjeta > 0) {
+                totalDisplay = `📱 Saldo Móvil: ${totalSaldo.toLocaleString()} CUP | 💳 Tarjeta: ${totalTarjeta.toLocaleString()} CUP`;
+            } else if (totalSaldo > 0) {
+                totalDisplay = `Total Saldo Móvil: ${totalSaldo.toLocaleString()} CUP`;
+            } else {
+                totalDisplay = `Total Tarjeta CUP: ${totalTarjeta.toLocaleString()} CUP`;
+            }
+
+            summaryTotalEl.innerText = totalDisplay;
         }
 
         function sendOrder() {
@@ -891,18 +902,36 @@
             }
 
             let orderDetails = "";
-            let grandTotal = 0;
-            let paymentMethodUsed = "";
+            let totalSaldo = 0;
+            let totalTarjeta = 0;
+            let usedMethods = [];
 
             keys.forEach(k => {
                 let item = cart[k];
                 let subtotal = item.price * item.qty;
-                grandTotal += subtotal;
+                
+                if (item.category === 'saldo') {
+                    totalSaldo += subtotal;
+                    if (!usedMethods.includes("Saldo Móvil")) usedMethods.push("Saldo Móvil");
+                } else {
+                    totalTarjeta += subtotal;
+                    if (!usedMethods.includes("Tarjeta CUP")) usedMethods.push("Tarjeta CUP");
+                }
+
                 orderDetails += `%0A  - *${item.qty}x* ${item.name} — *${subtotal.toLocaleString()} CUP*`;
-                paymentMethodUsed = item.type;
             });
 
-            const message = `Hola *Diamantes Express FF*! 💎%0AQuiero realizar este pedido:%0A%0A📌 *ID Jugador:* ${playerId}%0A👤 *Nombre en juego:* ${playerName}%0A💳 *Método de Pago:* ${paymentMethodUsed}%0A📦 *Paquetes:* ${orderDetails}%0A%0A💰 *TOTAL A PAGAR:* *${grandTotal.toLocaleString()} CUP*%0A%0A¿Cómo te hago la transferencia/envío?`;
+            // Construcción del desglose del total
+            let totalSection = "";
+            if (totalSaldo > 0 && totalTarjeta > 0) {
+                totalSection = `💰 *TOTAL A PAGAR:*%0A📱 *Saldo Móvil:* *${totalSaldo.toLocaleString()} CUP*%0A💳 *Tarjeta CUP:* *${totalTarjeta.toLocaleString()} CUP*`;
+            } else if (totalSaldo > 0) {
+                totalSection = `💰 *TOTAL SALDO MÓVIL:* *${totalSaldo.toLocaleString()} CUP*`;
+            } else {
+                totalSection = `💰 *TOTAL TARJETA CUP:* *${totalTarjeta.toLocaleString()} CUP*`;
+            }
+
+            const message = `Hola *Diamantes Express FF*! 💎%0AQuiero realizar este pedido:%0A%0A📌 *ID Jugador:* ${playerId}%0A👤 *Nombre en juego:* ${playerName}%0A💳 *Método(s):* ${usedMethods.join(" y ")}%0A📦 *Paquetes:* ${orderDetails}%0A%0A${totalSection}%0A%0A¿Cómo te hago la transferencia/envío?`;
 
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
             window.open(whatsappUrl, '_blank');
