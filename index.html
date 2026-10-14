@@ -1110,7 +1110,7 @@
             window.open(whatsappUrl, '_blank');
         }
 
-        /* LÓGICA DEL CHATBOT CON COMODINES MASIVOS DE IA */
+        /* LÓGICA DEL CHATBOT CORREGIDO Y PRIORIZADO */
         function toggleChat() {
             document.getElementById('chatWindow').classList.toggle('open');
         }
@@ -1146,23 +1146,23 @@
             return arr[Math.floor(Math.random() * arr.length)];
         }
 
-        /* MOTOR INTELIGENTE DE CIENTOS DE VARIACIONES Y COMODINES */
+        /* MOTOR DE INTELIGENCIA CON REGLAS Y PRIORIDADES CORREGIDAS */
         function getBotResponse(input) {
             
-            // COMODÍN 1: PETICIONES DE REGALOS, FIADO, COSAS GRATIS E INSISTENCIAS
-            if (input.match(/regal|gratis|fiado|dame|donam|rebaja|descuento|regalm|regales|regala|grati|regalame/)) {
+            // PRIORIDAD 1: PETICIONES DE REGALOS, FALTA DE DINERO, PLATA, FIADO, DESCUENTOS Y SINCERIDAD SOBRE NO TENER DINERO
+            if (input.match(/regal|gratis|fiado|dame|donam|rebaja|descuento|plata|dinero|moneda|baro|pobre|sin un kilo|efectivo|no tengo/)) {
                 const pool = [
                     "Jajaja ¡quisieras, crack! 😜 💎 Si le regalo diamantes a todos, el jefe Darian me deshusa el procesador. ¡Mira los precios de la web, si ya están tirados por el suelo! 🔥",
                     "¡Bro, insistes más que un manco pidiendo sala! 🤣 No puedo regalar nada, pero el paquete de 110 esta baratísimo. ¡Aprovecha antes que suba!",
-                    "¿Regalo? ¡Ojalá Garena me regalara la ropa del pase veterano! 🤖😂 Aquí todo es legal y al mejor precio de Cuba, ¡pide ahí arriba!",
-                    "¡Ey, mi creador Darian me puso un candado en la billetera virtual! 🛑 No sale ni un diamante gratis, ¡pero te garantizo entrega relámpago si compras!",
-                    "¿De gratis? ¡Hasta el agua de la canilla se paga en el mapa de Bermudas, hermano! 🗺️😂 Arma tu pedido en la web y dale con fe.",
-                    "Hermano, si te regalo diamantes me quedo comiendo cables y jugando con datos móviles de 1kbps 📉😂. ¡Apoya el negocio del bro Darian!"
+                    "¿Sin plata, bro? 😭 Te entiendo, ¡a todos nos pasa! Pero junta un poquitico de saldo con la tarjeta y pídele a los admins la recarga de 110 que te sale súper económica. 🔥",
+                    "¡Ey, mi creador Darian me puso un candado en la billetera virtual! 🛑 No sale ni un diamante sin pago previo, ¡pero te garantizo entrega relámpago si juntas la plata!",
+                    "¿Sin dinero? ¡Hasta el agua de la canilla se paga en Bermudas, hermano! 🗺️😂 Ahorra un poquito y arma tu pedido aquí en la web.",
+                    "Hermano, si te regalo o te fiado diamantes me quedo comiendo cables y jugando con datos móviles de 1kbps 📉😂. ¡Junta la platica y apoya el negocio del bro Darian!"
                 ];
                 return getRandom(pool);
             }
 
-            // COMODÍN 2: RIMAS, POEMAS Y EGO DE LA TIENDA
+            // PRIORIDAD 2: RIMAS, POEMAS Y EGO DE LA TIENDA Y CREADORES
             if (input.match(/mejor|rima|poema|pagina|tienda|canta|creador|darian|dueño|admin/)) {
                 const pool = [
                     "<i>¿Que cuál es la mejor web para recargar?<br>¡Pues Diamantes Express es la que manda a cantar!<br>Precios baratos, entrega veloz,<br>¡aquí te tratamos con amor y con dos!<br>No busques más por ahí, mi hermano,<br>que los mejores diamantes te los damos directo a la mano. 💎🔥</i>",
@@ -1172,7 +1172,7 @@
                 return getRandom(pool);
             }
 
-            // COMODÍN 3: TIEMPOS, VELOCIDAD Y HORARIOS
+            // PRIORIDAD 3: TIEMPOS, VELOCIDAD Y HORARIOS
             if (input.match(/tarda|demora|tiempo|rapido|velocidad|hora|abierto|atienden|cierran/)) {
                 const pool = [
                     "¡Más rápido que un corredor con Alok! ⚡ Las recargas caen en menos de 5 minutos después de confirmar tu pago con el admin.",
@@ -1182,7 +1182,7 @@
                 return getRandom(pool);
             }
 
-            // COMODÍN 4: MÉTODOS DE PAGO, SALDO, TARJETAS Y ETECSA
+            // PRIORIDAD 4: MÉTODOS DE PAGO Y ETECSA
             if (input.match(/pago|pagar|tarjeta|saldo|cup|transferencia|metodos|etecsa|bono|mlc|dolar|usd|zelle/)) {
                 const pool = [
                     "Aceptamos 📱 <b>Saldo Móvil</b> y 💳 <b>Tarjeta CUP</b>. ¡E incluso puedes pedir de ambos en el mismo carrito y la web te separa los totales!",
@@ -1192,7 +1192,7 @@
                 return getRandom(pool);
             }
 
-            // COMODÍN 5: CÓMO COMPRAR, PASOS Y PAQUETES (110, MEMBRESÍAS)
+            // PRIORIDAD 5: CÓMO COMPRAR, PASOS Y PAQUETES
             if (input.match(/compro|pido|pedido|pasos|funciona|110|membresia|semanal|mensual|pase|paquete/)) {
                 const pool = [
                     "Es facilísimo, crack: 1️⃣ Pon tu ID y Nombre de Free Fire. 2️⃣ Selecciona las cantidades con los botones (+). 3️⃣ Toca el botón verde de pedir por WhatsApp. 🛒",
@@ -1202,7 +1202,7 @@
                 return getRandom(pool);
             }
 
-            // COMODÍN 6: SEGURIDAD, CONFIANZA Y ERRORES DE ID
+            // PRIORIDAD 6: SEGURIDAD, CONFIANZA Y ERRORES DE ID
             if (input.match(/seguro|estafa|confiable|garantia|referencias|legal|equivoque|id|mal/)) {
                 const pool = [
                     "¡100% Seguro y Confiable! 🛡️ Únete a nuestro canal oficial de WhatsApp para ver todas las referencias reales de nuestros clientes felices.",
@@ -1212,22 +1212,26 @@
                 return getRandom(pool);
             }
 
-            // COMODÍN 7: SALUDOS Y GAMER / FREE FIRE / MANCOS
-            if (input.match(/hola|buenas|tal|klk|ey|bro|crack|saludos|juegas|manco|bot|skin|pro|pelea/)) {
+            // PRIORIDAD 7: SALUDOS PUROS (Solo si no dijo nada de dinero ni compra)
+            if (input.match(/hola|buenas|que tal|klk|saludos/)) {
                 const pool = [
                     "¡Qué onda, máquina! 😎 ¿Listo para llenar la cuenta de diamantes o membresías hoy?",
-                    "Yo no juego Free Fire porque mi emulador tiene tanto lag que me banean por bot, ¡pero me sé todas las skins de memoria! 🤖🎮",
-                    "¡Epa, leyenda! 💎 ¿Qué recarga nos aventamos hoy para reventar clasificatoria?"
+                    "¡Epa, leyenda! 💎 ¿Qué recarga nos aventamos hoy para reventar clasificatoria?",
+                    "¡Holi, crack! 🤖 Aquí Express Bot listo para servirte. ¿Qué te hace falta?"
                 ];
                 return getRandom(pool);
             }
 
-            // COMODÍN MASIVO POR DEFECTO (Cualquier locura que escriban)
+            // PRIORIDAD 8: BROMAS DE GAMER / FREE FIRE / MANCOS
+            if (input.match(/juegas|manco|bot|skin|pro|pelea/)) {
+                return "Yo no juego Free Fire porque mi emulador tiene tanto lag que me banean por bot, ¡pero me sé todas las skins de memoria! 🤖🎮";
+            }
+
+            // RESPUESTAS POR DEFECTO
             const respuestasLocas = [
                 "¡Aparato, esa pregunta me bugueó los circuitos! 🤖😂 Arma tu pedido arriba y háblale directo a los admins por WhatsApp.",
                 "¡Uy, me metiste un headshot con esa pregunta tan rara! 🎯💥 Para dudas específicas, toca el botón verde de WhatsApp.",
-                "¡Procesador sobrecalentado de tanto pensar! 🤖🔥 Toca el botón de pedir por WhatsApp y el equipo de soporte te atiende de inmediato.",
-                "Jajaja me pones a dudar si eres hacker o cliente confundido 🕵️‍♂️😂. ¡Configura tus diamantes arriba y dale a WhatsApp!"
+                "¡Procesador sobrecalentado de tanto pensar! 🤖🔥 Toca el botón de pedir por WhatsApp y el equipo de soporte te atiende de inmediato."
             ];
             return getRandom(respuestasLocas);
         }
