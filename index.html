@@ -1146,57 +1146,98 @@
             return arr[Math.floor(Math.random() * arr.length)];
         }
 
-        /* MOTOR INTELIGENTE LOCAL AVANZADO (SIMULADOR DE IA PROFESIONAL) */
+        /* MOTOR INTELIGENTE LOCAL SÚPER BLINDADO (VARIACIONES CON/SIN TILDES Y MODISMOS) */
         function getBotResponse(txt) {
             
-            // 1. INTENCIÓN DE POBREZA / FALTA DE DINERO / REGALOS / FIADO
+            // 1. INTENCIÓN DE POBREZA / FALTA DE DINERO / REGALOS / FIADO / DESCUENTOS
             if (
                 txt.includes('dinero') || txt.includes('plata') || txt.includes('regal') || 
                 txt.includes('gratis') || txt.includes('fiado') || txt.includes('dame') || 
                 txt.includes('donam') || txt.includes('rebaja') || txt.includes('descuento') || 
                 txt.includes('pobre') || txt.includes('sin un kilo') || txt.includes('110 gratis') ||
-                (txt.includes('no') && (txt.includes('tengo') || txt.includes('puedo')))
+                txt.includes('barato') || txt.includes('caro') || txt.includes('efectivo') ||
+                txt.includes('regala') || txt.includes('regalamelo') || txt.includes('regalarme') ||
+                (txt.includes('no') && (txt.includes('tengo') || txt.includes('puedo') || txt.includes('sumo') || txt.includes('hay')))
             ) {
                 const pool = [
-                    "Jajaja ¡quisieras, crack! 😜 💎 Si le regalo diamantes a todos, el jefe Darian me deshusa el procesador. ¡Mira los precios de la web, si ya están baratísimos! 🔥",
-                    "¿Sin plata o sin dinero, bro? 😭 Te entiendo perfectamente, ¡a todos nos pasa! Pero junta un poquitico y aprovecha la recarga de 110 que te sale súper económica arriba. 🔥",
-                    "¿Regalos o diamantes gratis? ¡Ojalá Garena me regalara la ropa del pase veterano! 🤖😂 Aquí todo es 100% legal, junta la platica y pídelos en la web.",
-                    "Hermano, si te fío o te regalo diamantes me quedo comiendo cables y jugando con datos móviles de 1kbps 📉😂. ¡Apoya el negocio del bro Darian!"
+                    "Jajaja ¡quisieras, crack! 😜 💎 Si le regalo diamantes a todos, el jefe MR DARIAN YT me deshusa el procesador. ¡Mira los precios de la web, si ya están baratísimos! 🔥",
+                    "¿Sin plata, sin dinero o sin un kilo, bro? 😭 Te entiendo perfectamente, ¡a todos nos pasa! Pero junta un poquitico y aprovecha la recarga de 110 que te sale súper económica arriba. 🔥",
+                    "¿Regalos, rebajas o diamantes gratis? ¡Ojalá Garena me regalara la ropa del pase veterano! 🤖😂 Aquí todo es 100% legal, junta la platica y pídelos en la web.",
+                    "Hermano, si te fío o te regalo diamantes me quedo comiendo cables y jugando con datos móviles de 1kbps 📉😂. ¡Apoya el negocio de MR DARIAN YT!"
                 ];
                 return getRandom(pool);
             }
 
-            // 2. INTENCIÓN DE RIMAS Y CREADOR (DARIAN)
-            if (txt.includes('mejor') || txt.includes('rima') || txt.includes('poema') || txt.includes('pagina') || txt.includes('tienda') || txt.includes('canta') || txt.includes('creador') || txt.includes('darian') || txt.includes('dueño') || txt.includes('admin')) {
+            // 2. INTENCIÓN DE RIMAS Y CREADOR / DUEÑO (MR DARIAN YT)
+            if (
+                txt.includes('mejor') || txt.includes('rima') || txt.includes('poema') || 
+                txt.includes('pagina') || txt.includes('página') || txt.includes('tienda') || 
+                txt.includes('canta') || txt.includes('creador') || txt.includes('creo') || 
+                txt.includes('creadora') || txt.includes('darian') || txt.includes('dueño') || 
+                txt.includes('admin') || txt.includes('mr') || txt.includes('inventó') || 
+                txt.includes('invento') || txt.includes('hizo') || txt.includes('desarrolló') ||
+                txt.includes('desarrollo') || txt.includes('propietario')
+            ) {
                 const pool = [
                     "<i>¿Que cuál es la mejor web para recargar?<br>¡Pues Diamantes Express es la que manda a cantar!<br>Precios baratos, entrega veloz,<br>¡aquí te tratamos con amor y con dos!<br>No busques más por ahí, mi hermano,<br>que los mejores diamantes te los damos directo a la mano. 💎🔥</i>",
-                    "El jefe supremo y creador de esto es <b>Darian Moreira</b> 👑, un crack total. ¡Y los admins te atienden volando al tocar el botón verde de WhatsApp!"
+                    "El jefe supremo, creador y dueño absoluto de esto es <b>MR DARIAN YT</b> 👑, un crack total. ¡Y los admins te atienden volando al tocar el botón verde de WhatsApp!"
                 ];
                 return getRandom(pool);
             }
 
-            // 3. INTENCIÓN DE VELOCIDAD Y TIEMPOS
-            if (txt.includes('tarda') || txt.includes('demora') || txt.includes('tiempo') || txt.includes('rapido') || txt.includes('velocidad') || txt.includes('hora') || txt.includes('abierto') || txt.includes('atienden')) {
+            // 3. INTENCIÓN DE VELOCIDAD, TIEMPOS Y HORARIOS
+            if (
+                txt.includes('tarda') || txt.includes('demora') || txt.includes('tiempo') || 
+                txt.includes('rapido') || txt.includes('rápido') || txt.includes('velocidad') || 
+                txt.includes('hora') || txt.includes('horario') || txt.includes('abierto') || 
+                txt.includes('atienden') || txt.includes('demoran') || txt.includes('tardan') ||
+                txt.includes('cuando') || txt.includes('minutos') || txt.includes('demoraran')
+            ) {
                 return "¡Más rápido que un corredor con Alok! ⚡ Las recargas caen en menos de 5 minutos después de confirmar tu pago con el admin.";
             }
 
-            // 4. INTENCIÓN DE MÉTODOS DE PAGO
-            if (txt.includes('pago') || txt.includes('pagar') || txt.includes('tarjeta') || txt.includes('saldo') || txt.includes('cup') || txt.includes('transferencia') || txt.includes('etecsa') || txt.includes('bono') || txt.includes('mlc') || txt.includes('dolar')) {
+            // 4. INTENCIÓN DE MÉTODOS DE PAGO (SALDO, TARJETA, ETECSEA, ETC.)
+            if (
+                txt.includes('pago') || txt.includes('pagar') || txt.includes('tarjeta') || 
+                txt.includes('saldo') || txt.includes('cup') || txt.includes('transferencia') || 
+                txt.includes('etecsa') || txt.includes('bono') || txt.includes('mlc') || 
+                txt.includes('dolar') || txt.includes('dólares') || txt.includes('moneda') ||
+                txt.includes('tarjetas') || txt.includes('transferir') || txt.includes('enviar')
+            ) {
                 return "Aceptamos 📱 <b>Saldo Móvil</b> y 💳 <b>Tarjeta CUP</b> de forma directa en Cuba. ¡E incluso puedes pedir de ambos en el mismo carrito y la web te separa los totales!";
             }
 
-            // 5. INTENCIÓN DE CÓMO COMPRAR Y PAQUETES
-            if (txt.includes('compro') || txt.includes('pido') || txt.includes('pedido') || txt.includes('pasos') || txt.includes('funciona') || txt.includes('110') || txt.includes('membresia') || txt.includes('semanal') || txt.includes('mensual')) {
+            // 5. INTENCIÓN DE CÓMO COMPRAR Y PAQUETES (110, MEMBRESÍAS, PASOS)
+            if (
+                txt.includes('compro') || txt.includes('comprar') || txt.includes('pido') || 
+                txt.includes('pedir') || txt.includes('pedido') || txt.includes('pasos') || 
+                txt.includes('funciona') || txt.includes('como') || txt.includes('110') || 
+                txt.includes('membresia') || txt.includes('membresía') || txt.includes('semanal') || 
+                txt.includes('mensual') || txt.includes('diamantes') || txt.includes('paquete') ||
+                txt.includes('paquetes') || txt.includes('oferta') || txt.includes('ofertas')
+            ) {
                 return "Es facilísimo, crack: 1️⃣ Pon tu ID y Nombre de Free Fire. 2️⃣ Selecciona las cantidades con los botones (+). 3️⃣ Toca el botón verde de pedir por WhatsApp. 🛒";
             }
 
-            // 6. INTENCIÓN DE SEGURIDAD Y CONFIANZA
-            if (txt.includes('seguro') || txt.includes('estafa') || txt.includes('confiable') || txt.includes('garantia') || txt.includes('referencias') || txt.includes('equivoque') || txt.includes('id')) {
+            // 6. INTENCIÓN DE SEGURIDAD, CONFIANZA Y REFERENCIAS
+            if (
+                txt.includes('seguro') || txt.includes('estafa') || txt.includes('estafador') || 
+                txt.includes('confiable') || txt.includes('confianza') || txt.includes('garantia') || 
+                txt.includes('garantía') || txt.includes('referencias') || txt.includes('referencia') || 
+                txt.includes('equivoque') || txt.includes('id') || txt.includes('rob') || 
+                txt.includes('perder') || txt.includes('seguridad')
+            ) {
                 return "¡100% Seguro y Confiable! 🛡️ Únete a nuestro canal oficial de WhatsApp abajo en la web para ver todas las referencias reales de nuestros clientes.";
             }
 
             // 7. SALUDOS GENERALES
-            if (txt.includes('hola') || txt.includes('buenas') || txt.includes('que tal') || txt.includes('klk') || txt.includes('saludos') || txt.includes('bro') || txt.includes('oye')) {
+            if (
+                txt.includes('hola') || txt.includes('buenas') || txt.includes('buenos') || 
+                txt.includes('tardes') || txt.includes('dias') || txt.includes('días') || 
+                txt.includes('noches') || txt.includes('que tal') || txt.includes('qué tal') || 
+                txt.includes('klk') || txt.includes('saludos') || txt.includes('bro') || 
+                txt.includes('oye') || txt.includes('hey') || txt.includes('epa')
+            ) {
                 const saludos = [
                     "¡Qué onda, máquina! 😎 ¿Listo para llenar la cuenta de diamantes o membresías hoy?",
                     "¡Epa, leyenda! 💎 ¿Qué recarga nos aventamos hoy para reventar clasificatoria?"
