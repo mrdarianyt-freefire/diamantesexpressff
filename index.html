@@ -230,7 +230,7 @@
         /* Grid de Paquetes */
         .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 12px;
         }
 
@@ -238,30 +238,22 @@
             background: rgba(10, 12, 22, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 14px;
-            padding: 15px 10px;
+            padding: 12px 8px;
             text-align: center;
-            cursor: pointer;
             position: relative;
             overflow: visible;
-            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.25s ease;
         }
 
         .pkg-card:hover {
-            transform: translateY(-4px);
             border-color: var(--primary);
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
         }
 
-        .pkg-card.active {
-            background: linear-gradient(145deg, rgba(0, 240, 255, 0.25), rgba(10, 12, 22, 0.95));
+        .pkg-card.selected {
+            background: linear-gradient(145deg, rgba(0, 240, 255, 0.2), rgba(10, 12, 22, 0.95));
             border: 2px solid var(--primary);
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.5), inset 0 0 15px rgba(0, 240, 255, 0.3);
-            animation: pulseGlow 2s infinite alternate;
-        }
-
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 20px rgba(0, 240, 255, 0.4), inset 0 0 10px rgba(0, 240, 255, 0.2); }
-            100% { box-shadow: 0 0 30px rgba(0, 240, 255, 0.7), inset 0 0 20px rgba(0, 240, 255, 0.4); }
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
         }
 
         .pkg-card .badge-popular {
@@ -271,7 +263,7 @@
             transform: translateX(50%);
             background: var(--secondary);
             color: #fff;
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             font-weight: 800;
             padding: 2px 8px;
             border-radius: 10px;
@@ -281,50 +273,85 @@
         }
 
         .pkg-icon {
-            font-size: 1.8rem;
-            margin-bottom: 6px;
+            font-size: 1.5rem;
+            margin-bottom: 4px;
             color: var(--primary);
-            transition: transform 0.3s ease;
-        }
-
-        .pkg-card.active .pkg-icon {
-            transform: scale(1.2);
         }
 
         .pkg-title {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
             color: #fff;
         }
 
         .pkg-price {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             font-family: 'Orbitron', sans-serif;
             font-weight: 800;
             color: var(--accent);
+            margin-bottom: 8px;
         }
 
-        /* Partículas internas */
-        .sparkle-particle {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            pointer-events: none;
-            z-index: 99;
-            font-size: 1.2rem;
-            animation: floatAndFade 0.9s ease-out forwards;
+        /* Controles de cantidad (+ / -) */
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 4px;
         }
 
-        @keyframes floatAndFade {
-            0% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1) rotate(0deg);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.2) rotate(180deg);
-            }
+        .qty-btn {
+            background: rgba(0, 240, 255, 0.2);
+            border: none;
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+        }
+
+        .qty-btn:hover {
+            background: var(--primary);
+            color: #0a0c16;
+        }
+
+        .qty-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #fff;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        /* Resumen de pedido flotante / sección */
+        .order-summary {
+            background: rgba(0, 240, 255, 0.05);
+            border: 1px dashed var(--primary);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 18px;
+            font-size: 0.9rem;
+        }
+
+        .summary-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.95rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         /* SECCIÓN COMUNIDAD / CANAL DE WHATSAPP */
@@ -524,7 +551,7 @@
         <section class="section-card">
             <div class="section-header">
                 <i class="fa-solid fa-gem"></i>
-                <span>2. Seleccionar Paquete</span>
+                <span>2. Selecciona tus Ofertas (Hasta 10 por opción)</span>
             </div>
 
             <!-- Selector de Método de Pago -->
@@ -539,117 +566,204 @@
 
             <!-- Paquetes Saldo Móvil -->
             <div class="packages-grid" id="grid-saldo">
-                <div class="pkg-card" onclick="selectPackage(this, '110 Diamantes (Saldo Móvil)', '230 CUP')">
+                <div class="pkg-card" id="card-s-0">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">110 Diamantes</div>
                     <div class="pkg-price">230 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('saldo', 0, '110 Diamantes (Saldo Móvil)', 230, -1)">-</button>
+                        <span class="qty-value" id="qty-s-0">0</span>
+                        <button class="qty-btn" onclick="updateQty('saldo', 0, '110 Diamantes (Saldo Móvil)', 230, 1)">+</button>
+                    </div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '220 Diamantes (Saldo Móvil)', '460 CUP')">
+                <div class="pkg-card" id="card-s-1">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">220 Diamantes</div>
                     <div class="pkg-price">460 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('saldo', 1, '220 Diamantes (Saldo Móvil)', 460, -1)">-</button>
+                        <span class="qty-value" id="qty-s-1">0</span>
+                        <button class="qty-btn" onclick="updateQty('saldo', 1, '220 Diamantes (Saldo Móvil)', 460, 1)">+</button>
+                    </div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '341 Diamantes (Saldo Móvil)', '690 CUP')">
+                <div class="pkg-card" id="card-s-2">
                     <span class="badge-popular">Popular</span>
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">341 Diamantes</div>
                     <div class="pkg-price">690 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('saldo', 2, '341 Diamantes (Saldo Móvil)', 690, -1)">-</button>
+                        <span class="qty-value" id="qty-s-2">0</span>
+                        <button class="qty-btn" onclick="updateQty('saldo', 2, '341 Diamantes (Saldo Móvil)', 690, 1)">+</button>
+                    </div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '572 Diamantes (Saldo Móvil)', '1150 CUP')">
+                <div class="pkg-card" id="card-s-3">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">572 Diamantes</div>
                     <div class="pkg-price">1,150 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('saldo', 3, '572 Diamantes (Saldo Móvil)', 1150, -1)">-</button>
+                        <span class="qty-value" id="qty-s-3">0</span>
+                        <button class="qty-btn" onclick="updateQty('saldo', 3, '572 Diamantes (Saldo Móvil)', 1150, 1)">+</button>
+                    </div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '1166 Diamantes (Saldo Móvil)', '2300 CUP')">
+                <div class="pkg-card" id="card-s-4">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">1166 Diamantes</div>
                     <div class="pkg-price">2,300 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('saldo', 4, '1166 Diamantes (Saldo Móvil)', 2300, -1)">-</button>
+                        <span class="qty-value" id="qty-s-4">0</span>
+                        <button class="qty-btn" onclick="updateQty('saldo', 4, '1166 Diamantes (Saldo Móvil)', 2300, 1)">+</button>
+                    </div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '2398 Diamantes (Saldo Móvil)', '4600 CUP')">
+                <div class="pkg-card" id="card-s-5">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">2398 Diamantes</div>
                     <div class="pkg-price">4,600 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('saldo', 5, '2398 Diamantes (Saldo Móvil)', 4600, -1)">-</button>
+                        <span class="qty-value" id="qty-s-5">0</span>
+                        <button class="qty-btn" onclick="updateQty('saldo', 5, '2398 Diamantes (Saldo Móvil)', 4600, 1)">+</button>
+                    </div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Semanal (Saldo Móvil)', '690 CUP')">
+                <div class="pkg-card" id="card-s-6">
                     <div class="pkg-icon">👑</div>
                     <div class="pkg-title">M. Semanal</div>
                     <div class="pkg-price">690 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('saldo', 6, 'Membresía Semanal (Saldo Móvil)', 690, -1)">-</button>
+                        <span class="qty-value" id="qty-s-6">0</span>
+                        <button class="qty-btn" onclick="updateQty('saldo', 6, 'Membresía Semanal (Saldo Móvil)', 690, 1)">+</button>
+                    </div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Mensual (Saldo Móvil)', '3000 CUP')">
+                <div class="pkg-card" id="card-s-7">
                     <div class="pkg-icon">👑</div>
                     <div class="pkg-title">M. Mensual</div>
                     <div class="pkg-price">3,000 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('saldo', 7, 'Membresía Mensual (Saldo Móvil)', 3000, -1)">-</button>
+                        <span class="qty-value" id="qty-s-7">0</span>
+                        <button class="qty-btn" onclick="updateQty('saldo', 7, 'Membresía Mensual (Saldo Móvil)', 3000, 1)">+</button>
+                    </div>
                 </div>
             </div>
 
             <!-- Paquetes Tarjeta CUP -->
             <div class="packages-grid" id="grid-tarjeta" style="display: none;">
-                <div class="pkg-card" onclick="selectPackage(this, '110 Diamantes (Tarjeta CUP)', '900 CUP')">
+                <div class="pkg-card" id="card-t-0">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">110 Diamantes</div>
                     <div class="pkg-price">900 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 0, '110 Diamantes (Tarjeta CUP)', 900, -1)">-</button>
+                        <span class="qty-value" id="qty-t-0">0</span>
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 0, '110 Diamantes (Tarjeta CUP)', 900, 1)">+</button>
+                    </div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '220 Diamantes (Tarjeta CUP)', '1800 CUP')">
+                <div class="pkg-card" id="card-t-1">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">220 Diamantes</div>
                     <div class="pkg-price">1,800 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 1, '220 Diamantes (Tarjeta CUP)', 1800, -1)">-</button>
+                        <span class="qty-value" id="qty-t-1">0</span>
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 1, '220 Diamantes (Tarjeta CUP)', 1800, 1)">+</button>
+                    </div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '341 Diamantes (Tarjeta CUP)', '2700 CUP')">
+                <div class="pkg-card" id="card-t-2">
                     <span class="badge-popular">Popular</span>
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">341 Diamantes</div>
                     <div class="pkg-price">2,700 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 2, '341 Diamantes (Tarjeta CUP)', 2700, -1)">-</button>
+                        <span class="qty-value" id="qty-t-2">0</span>
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 2, '341 Diamantes (Tarjeta CUP)', 2700, 1)">+</button>
+                    </div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '572 Diamantes (Tarjeta CUP)', '4500 CUP')">
+                <div class="pkg-card" id="card-t-3">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">572 Diamantes</div>
                     <div class="pkg-price">4,500 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 3, '572 Diamantes (Tarjeta CUP)', 4500, -1)">-</button>
+                        <span class="qty-value" id="qty-t-3">0</span>
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 3, '572 Diamantes (Tarjeta CUP)', 4500, 1)">+</button>
+                    </div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '1166 Diamantes (Tarjeta CUP)', '9000 CUP')">
+                <div class="pkg-card" id="card-t-4">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">1166 Diamantes</div>
                     <div class="pkg-price">9,000 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 4, '1166 Diamantes (Tarjeta CUP)', 9000, -1)">-</button>
+                        <span class="qty-value" id="qty-t-4">0</span>
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 4, '1166 Diamantes (Tarjeta CUP)', 9000, 1)">+</button>
+                    </div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, '2398 Diamantes (Tarjeta CUP)', '18000 CUP')">
+                <div class="pkg-card" id="card-t-5">
                     <div class="pkg-icon">💎</div>
                     <div class="pkg-title">2398 Diamantes</div>
                     <div class="pkg-price">18,000 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 5, '2398 Diamantes (Tarjeta CUP)', 18000, -1)">-</button>
+                        <span class="qty-value" id="qty-t-5">0</span>
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 5, '2398 Diamantes (Tarjeta CUP)', 18000, 1)">+</button>
+                    </div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Semanal (Tarjeta CUP)', '2700 CUP')">
+                <div class="pkg-card" id="card-t-6">
                     <div class="pkg-icon">👑</div>
                     <div class="pkg-title">M. Semanal</div>
                     <div class="pkg-price">2,700 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 6, 'Membresía Semanal (Tarjeta CUP)', 2700, -1)">-</button>
+                        <span class="qty-value" id="qty-t-6">0</span>
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 6, 'Membresía Semanal (Tarjeta CUP)', 2700, 1)">+</button>
+                    </div>
                 </div>
 
-                <div class="pkg-card" onclick="selectPackage(this, 'Membresía Mensual (Tarjeta CUP)', '11700 CUP')">
+                <div class="pkg-card" id="card-t-7">
                     <div class="pkg-icon">👑</div>
                     <div class="pkg-title">M. Mensual</div>
                     <div class="pkg-price">11,700 CUP</div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 7, 'Membresía Mensual (Tarjeta CUP)', 11700, -1)">-</button>
+                        <span class="qty-value" id="qty-t-7">0</span>
+                        <button class="qty-btn" onclick="updateQty('tarjeta', 7, 'Membresía Mensual (Tarjeta CUP)', 11700, 1)">+</button>
+                    </div>
                 </div>
             </div>
 
+            <!-- Resumen de selección -->
+            <div class="order-summary">
+                <div class="summary-title"><i class="fa-solid fa-cart-shopping"></i> Resumen Total:</div>
+                <div id="summary-text" style="color: var(--text-muted); font-size: 0.85rem;">Ningún paquete seleccionado.</div>
+                <div id="summary-total" style="font-family: 'Orbitron', sans-serif; font-weight: 800; color: var(--accent); margin-top: 6px; font-size: 1.05rem;">Total: 0 CUP</div>
+            </div>
+
             <!-- Pasos breves -->
-            <div class="steps-container">
+            <div class="steps-container" style="margin-top: 20px;">
                 <div class="step-box">
                     <div class="step-number">1</div>
                     <span>ID y Nombre</span>
                 </div>
                 <div class="step-box">
                     <div class="step-number">2</div>
-                    <span>Elige tu oferta</span>
+                    <span>Elige cantidad</span>
                 </div>
                 <div class="step-box">
                     <div class="step-number">3</div>
@@ -684,9 +798,9 @@
     </footer>
 
     <script>
-        let selectedProduct = "";
-        let selectedPrice = "";
-        let activePayment = "Saldo Móvil";
+        // Almacenamiento de elementos seleccionados (key -> {name, price, qty, type})
+        let cart = {};
+        let activePaymentTab = 'saldo';
 
         function switchTab(type) {
             document.getElementById('grid-saldo').style.display = type === 'saldo' ? 'grid' : 'none';
@@ -695,50 +809,64 @@
             document.getElementById('tab-saldo').classList.toggle('active', type === 'saldo');
             document.getElementById('tab-tarjeta').classList.toggle('active', type === 'tarjeta');
 
-            activePayment = type === 'saldo' ? 'Saldo Móvil (CUP)' : 'Tarjeta CUP';
-
-            // Limpiar selección previa
-            let cards = document.querySelectorAll('.pkg-card');
-            cards.forEach(c => c.classList.remove('active'));
-            selectedProduct = "";
-            selectedPrice = "";
+            activePaymentTab = type;
         }
 
-        function selectPackage(element, product, price) {
-            let cards = document.querySelectorAll('.pkg-card');
-            cards.forEach(c => c.classList.remove('active'));
-            
-            element.classList.add('active');
-            selectedProduct = product;
-            selectedPrice = price;
-
-            // Lanza los brillos exactamente dentro de la tarjeta presionada
-            createSparklesInside(element);
-        }
-
-        function createSparklesInside(cardElement) {
-            const symbols = ['💎', '✨', '⭐', '⚡'];
-            const count = 10;
-
-            for (let i = 0; i < count; i++) {
-                const particle = document.createElement('span');
-                particle.className = 'sparkle-particle';
-                particle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-
-                // Direcciones aleatorias desde el centro de la tarjeta
-                const dx = (Math.random() - 0.5) * 140 + 'px';
-                const dy = (Math.random() - 0.5) * 140 + 'px';
-
-                particle.style.setProperty('--dx', dx);
-                particle.style.setProperty('--dy', dy);
-
-                cardElement.appendChild(particle);
-
-                // Eliminar la partícula después de la animación
-                setTimeout(() => {
-                    particle.remove();
-                }, 900);
+        function updateQty(type, index, name, unitPrice, change) {
+            let key = type + '-' + index;
+            if (!cart[key]) {
+                cart[key] = { name: name, price: unitPrice, qty: 0, type: type === 'saldo' ? 'Saldo Móvil' : 'Tarjeta CUP' };
             }
+
+            let newQty = cart[key].qty + change;
+            if (newQty < 0) newQty = 0;
+            if (newQty > 10) {
+                alert("¡Máximo 10 unidades por opción en un mismo pedido!");
+                return;
+            }
+
+            cart[key].qty = newQty;
+            if (cart[key].qty === 0) {
+                delete cart[key];
+            }
+
+            // Actualizar visualizador de cantidad en pantalla
+            document.getElementById(`qty-${type[0]}-${index}`).innerText = newQty;
+            
+            // Cambiar estilo de la tarjeta
+            let cardElement = document.getElementById(`card-${type[0]}-${index}`);
+            if (newQty > 0) {
+                cardElement.classList.add('selected');
+            } else {
+                cardElement.classList.remove('selected');
+            }
+
+            updateSummary();
+        }
+
+        function updateSummary() {
+            let summaryTextEl = document.getElementById('summary-text');
+            let summaryTotalEl = document.getElementById('summary-total');
+            
+            let keys = Object.keys(cart);
+            if (keys.length === 0) {
+                summaryTextEl.innerText = "Ningún paquete seleccionado.";
+                summaryTotalEl.innerText = "Total: 0 CUP";
+                return;
+            }
+
+            let textHtml = "";
+            let grandTotal = 0;
+
+            keys.forEach(k => {
+                let item = cart[k];
+                let subtotal = item.price * item.qty;
+                grandTotal += subtotal;
+                textHtml += `• ${item.qty}x ${item.name} (${subtotal.toLocaleString()} CUP)<br>`;
+            });
+
+            summaryTextEl.innerHTML = textHtml;
+            summaryTotalEl.innerText = `Total: ${grandTotal.toLocaleString()} CUP`;
         }
 
         function sendOrder() {
@@ -756,12 +884,25 @@
                 return;
             }
 
-            if (!selectedProduct) {
-                alert("Por favor, selecciona un paquete de diamantes o membresía.");
+            let keys = Object.keys(cart);
+            if (keys.length === 0) {
+                alert("Por favor, selecciona al menos un paquete usando los botones (+).");
                 return;
             }
 
-            const message = `Hola *Diamantes Express FF*! 💎%0AQuiero realizar una recarga:%0A%0A📌 *ID Jugador:* ${playerId}%0A👤 *Nombre en juego:* ${playerName}%0A💳 *Método de Pago:* ${activePayment}%0A📦 *Paquete:* ${selectedProduct}%0A💰 *Precio:* ${selectedPrice}%0A%0A¿Cómo te hago la transferencia/envío?`;
+            let orderDetails = "";
+            let grandTotal = 0;
+            let paymentMethodUsed = "";
+
+            keys.forEach(k => {
+                let item = cart[k];
+                let subtotal = item.price * item.qty;
+                grandTotal += subtotal;
+                orderDetails += `%0A  - *${item.qty}x* ${item.name} — *${subtotal.toLocaleString()} CUP*`;
+                paymentMethodUsed = item.type;
+            });
+
+            const message = `Hola *Diamantes Express FF*! 💎%0AQuiero realizar este pedido:%0A%0A📌 *ID Jugador:* ${playerId}%0A👤 *Nombre en juego:* ${playerName}%0A💳 *Método de Pago:* ${paymentMethodUsed}%0A📦 *Paquetes:* ${orderDetails}%0A%0A💰 *TOTAL A PAGAR:* *${grandTotal.toLocaleString()} CUP*%0A%0A¿Cómo te hago la transferencia/envío?`;
 
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
             window.open(whatsappUrl, '_blank');
