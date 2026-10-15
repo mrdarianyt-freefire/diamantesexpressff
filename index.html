@@ -1146,10 +1146,10 @@
             return arr[Math.floor(Math.random() * arr.length)];
         }
 
-        /* MOTOR INTELIGENTE LOCAL (SOLO SALDO MÓVIL Y TARJETA CUP) */
+        /* MOTOR INTELIGENTE LOCAL (ORDEN DE PRIORIDAD BLINDADO) */
         function getBotResponse(txt) {
             
-            // 1. AGRADECIMIENTOS Y DESPEDIDAS (Máxima prioridad)
+            // 1. AGRADECIMIENTOS Y DESPEDIDAS (Prioridad 1)
             if (
                 txt.includes('gracias') || txt.includes('gracia') || txt.includes('grax') || 
                 txt.includes('chao') || txt.includes('adios') || txt.includes('adiós') || 
@@ -1163,7 +1163,7 @@
                 return getRandom(agradecimientos);
             }
 
-            // 2. CREADOR / DUEÑO (MR DARIAN YT)
+            // 2. CREADOR / DUEÑO (MR DARIAN YT) (Prioridad 2)
             if (
                 txt.includes('creador') || txt.includes('creo') || txt.includes('creadora') || 
                 txt.includes('darian') || txt.includes('dueño') || txt.includes('inventó') || 
@@ -1173,61 +1173,7 @@
                 return "El jefe supremo, creador y dueño absoluto de esto es <b>MR DARIAN YT</b> 👑, un crack total. ¡Y los admins te atienden volando al tocar el botón verde de WhatsApp!";
             }
 
-            // 3. DÓNDE PONER EL ID Y PARA QUÉ SIRVE EL APODO / NOMBRE
-            if (txt.includes('donde pongo id') || txt.includes('donde va el id') || txt.includes('id jugador') || txt.includes('id free fire') || txt.includes('cuál es mi id')) {
-                return "📌 En el cuadro que dice <b>'ID de Jugador (Free Fire)'</b> arriba, pon solo números (ej: 123456789). Lo encuentras entrando a tu perfil de Free Fire arriba a la izquierda.";
-            }
-
-            if (txt.includes('apodo') || txt.includes('para que apodo') || txt.includes('para que nombre') || txt.includes('verificar')) {
-                return "👤 Pon tu nombre o apodo exacto del juego. Lo usamos para verificar que tu ID esté correcto y asegurarnos de enviar los diamantes a la cuenta correcta.";
-            }
-
-            // 4. PREGUNTAS SOBRE ERRORES DE WHATSAPP / BOTÓN VERDE Y TOTAL 0 CUP
-            if (txt.includes('no abre whatsapp') || txt.includes('error whatsapp') || txt.includes('no funciona boton') || txt.includes('no envia')) {
-                return "⚠️ Revisa haber puesto tu ID, Apodo y seleccionado al menos 1 oferta con el botón (+). Si no completas esos datos, el botón no se activa.";
-            }
-
-            if (txt.includes('total 0') || txt.includes('no suma') || txt.includes('ningun paquete')) {
-                return "🛒 Si dice 'Total: 0 CUP', es porque no has sumado ofertas. Dale al botón (+) en la oferta que quieras para agregarla al carrito.";
-            }
-
-            if (txt.includes('que significa popular') || txt.includes('por que popular') || txt.includes('popular 341')) {
-                return "🔥 <b>POPULAR</b> es la oferta estrella de 341 Diamantes por 690 CUP. Es la más elegida por los clientes porque rinde muchísimo por su precio.";
-            }
-
-            if (txt.includes('admin 1') || txt.includes('admin 2') || txt.includes('atendido por')) {
-                return "🎧 Puedes elegir entre ADMIN 1 o ADMIN 2 para mandar tu pedido por WhatsApp. Ambos atienden al instante y te dan el mejor soporte.";
-            }
-
-            // 5. MÉTODOS Y CÓDIGOS DE PAGO (SOLO SALDO MÓVIL Y TARJETA)
-            if (txt.includes('codigo') || txt.includes('como transferir saldo') || txt.includes('transferir saldo') || txt.includes('133')) {
-                return "📱 Para pagar con Saldo Móvil, haz el pedido en la web y al abrir WhatsApp te damos nuestro número. Luego transfieres usando el código <code>*133*1*numero*monto#</code>.";
-            }
-
-            if (txt.includes('transfermovil') || txt.includes('tarjeta cup')) {
-                return "💳 Si pagas con Tarjeta CUP, seleccionas esa opción, mandas el pedido y por WhatsApp te damos los datos de la tarjeta para transferir con Transfermóvil.";
-            }
-
-            if (txt.includes('pago despues') || txt.includes('cuando pago') || txt.includes('donde pago')) {
-                return "💬 En la web armas y calculas tu pedido. El pago se realiza directamente por WhatsApp tras confirmar los detalles con el Admin.";
-            }
-
-            // 6. SALUDOS GENERALES
-            if (
-                txt.includes('hola') || txt.includes('buenas') || txt.includes('buenos') || 
-                txt.includes('tardes') || txt.includes('dias') || txt.includes('días') || 
-                txt.includes('noches') || txt.includes('que tal') || txt.includes('qué tal') || 
-                txt.includes('klk') || txt.includes('saludos') || txt.includes('bro') || 
-                txt.includes('oye') || txt.includes('hey') || txt.includes('epa')
-            ) {
-                const saludos = [
-                    "¡Qué onda, máquina! 😎 ¿Listo para llenar la cuenta de diamantes o membresías hoy?",
-                    "¡Epa, leyenda! 💎 ¿Qué recarga nos aventamos hoy para reventar clasificatoria?"
-                ];
-                return getRandom(saludos);
-            }
-
-            // 7. INTENCIÓN DE POBREZA / REGALOS / FIADO / DESCUENTOS
+            // 3. INTENCIÓN DE POBREZA / REGALOS / FIADO / DESCUENTOS (Prioridad 3 - ¡Subido para que no se cruce con "bro" o "110"!)
             if (
                 txt.includes('dinero') || txt.includes('plata') || txt.includes('regal') || 
                 txt.includes('gratis') || txt.includes('fiado') || txt.includes('dame') || 
@@ -1244,6 +1190,60 @@
                     "Hermano, si te fío o te regalo diamantes me quedo comiendo cables y jugando con datos móviles de 1kbps 📉😂. ¡Apoya el negocio de MR DARIAN YT!"
                 ];
                 return getRandom(pool);
+            }
+
+            // 4. SALUDOS GENERALES (Prioridad 4)
+            if (
+                txt.includes('hola') || txt.includes('buenas') || txt.includes('buenos') || 
+                txt.includes('tardes') || txt.includes('dias') || txt.includes('días') || 
+                txt.includes('noches') || txt.includes('que tal') || txt.includes('qué tal') || 
+                txt.includes('klk') || txt.includes('saludos') || txt.includes('bro') || 
+                txt.includes('oye') || txt.includes('hey') || txt.includes('epa')
+            ) {
+                const saludos = [
+                    "¡Qué onda, máquina! 😎 ¿Listo para llenar la cuenta de diamantes o membresías hoy?",
+                    "¡Epa, leyenda! 💎 ¿Qué recarga nos aventamos hoy para reventar clasificatoria?"
+                ];
+                return getRandom(saludos);
+            }
+
+            // 5. DÓNDE PONER EL ID Y PARA QUÉ SIRVE EL APODO
+            if (txt.includes('donde pongo id') || txt.includes('donde va el id') || txt.includes('id jugador') || txt.includes('id free fire') || txt.includes('cuál es mi id')) {
+                return "📌 En el cuadro que dice <b>'ID de Jugador (Free Fire)'</b> arriba, pon solo números (ej: 123456789). Lo encuentras entrando a tu perfil de Free Fire arriba a la izquierda.";
+            }
+
+            if (txt.includes('apodo') || txt.includes('para que apodo') || txt.includes('para que nombre') || txt.includes('verificar')) {
+                return "👤 Pon tu nombre o apodo exacto del juego. Lo usamos para verificar que tu ID esté correcto y asegurarnos de enviar los diamantes a la cuenta correcta.";
+            }
+
+            // 6. PREGUNTAS SOBRE ERRORES DE WHATSAPP / BOTÓN VERDE Y TOTAL 0 CUP
+            if (txt.includes('no abre whatsapp') || txt.includes('error whatsapp') || txt.includes('no funciona boton') || txt.includes('no envia')) {
+                return "⚠️ Revisa haber puesto tu ID, Apodo y seleccionado al menos 1 oferta con el botón (+). Si no completas esos datos, el botón no se activa.";
+            }
+
+            if (txt.includes('total 0') || txt.includes('no suma') || txt.includes('ningun paquete')) {
+                return "🛒 Si dice 'Total: 0 CUP', es porque no has sumado ofertas. Dale al botón (+) en la oferta que quieras para agregarla al carrito.";
+            }
+
+            if (txt.includes('que significa popular') || txt.includes('por que popular') || txt.includes('popular 341')) {
+                return "🔥 <b>POPULAR</b> es la oferta estrella de 341 Diamantes por 690 CUP. Es la más elegida por los clientes porque rinde muchísimo por su precio.";
+            }
+
+            if (txt.includes('admin 1') || txt.includes('admin 2') || txt.includes('atendido por')) {
+                return "🎧 Puedes elegir entre ADMIN 1 o ADMIN 2 para mandar tu pedido por WhatsApp. Ambos atienden al instante y te dan el mejor soporte.";
+            }
+
+            // 7. MÉTODOS Y CÓDIGOS DE PAGO (SOLO SALDO MÓVIL Y TARJETA CUP)
+            if (txt.includes('codigo') || txt.includes('como transferir saldo') || txt.includes('transferir saldo') || txt.includes('133')) {
+                return "📱 Para pagar con Saldo Móvil, haz el pedido en la web y al abrir WhatsApp te damos nuestro número. Luego transfieres usando el código <code>*133*1*numero*monto#</code>.";
+            }
+
+            if (txt.includes('transfermovil') || txt.includes('tarjeta cup')) {
+                return "💳 Si pagas con Tarjeta CUP, seleccionas esa opción, mandas el pedido y por WhatsApp te damos los datos de la tarjeta para transferir con Transfermóvil.";
+            }
+
+            if (txt.includes('pago despues') || txt.includes('cuando pago') || txt.includes('donde pago')) {
+                return "💬 En la web armas y calculas tu pedido. El pago se realiza directamente por WhatsApp tras confirmar los detalles con el Admin.";
             }
 
             // 8. INTENCIÓN DE RIMAS, POEMAS Y CALIDAD DE LA PÁGINA
