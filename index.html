@@ -961,7 +961,7 @@
             <button class="chat-close-btn" onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="chat-messages" id="chatMessages">
-            <div class="msg msg-bot">¡Hola, crack! 🤖💎 Soy el asistente virtual inteligente de <b>Diamantes Express FF</b>. ¿Qué te trae por aquí hoy?</div>
+            <div class="msg msg-bot">¡Hola, crack! 🤖💎 Soy el asistente virtual de <b>Diamantes Express FF</b>. Ojo: no soy una IA 100% oficial y a veces puedo cometer algún error, ¡así que cualquier duda seria consúltala con los admins! ¿Qué te trae por aquí hoy?</div>
         </div>
         <div class="chat-input-area">
             <input type="text" class="chat-input" id="chatInput" placeholder="Escribe aquí..." onkeypress="handleKeyPress(event)">
@@ -1146,7 +1146,7 @@
             return arr[Math.floor(Math.random() * arr.length)];
         }
 
-        /* MOTOR INTELIGENTE LOCAL (ORDEN DE PRIORIDAD BLINDADO) */
+        /* MOTOR INTELIGENTE LOCAL (LIGERO < 5MB) */
         function getBotResponse(txt) {
             
             // 1. AGRADECIMIENTOS Y DESPEDIDAS (Prioridad 1)
@@ -1173,7 +1173,7 @@
                 return "El jefe supremo, creador y dueño absoluto de esto es <b>MR DARIAN YT</b> 👑, un crack total. ¡Y los admins te atienden volando al tocar el botón verde de WhatsApp!";
             }
 
-            // 3. INTENCIÓN DE POBREZA / REGALOS / FIADO / DESCUENTOS (Prioridad 3 - ¡Subido para que no se cruce con "bro" o "110"!)
+            // 3. INTENCIÓN DE POBREZA / REGALOS / FIADO / DESCUENTOS (Prioridad 3)
             if (
                 txt.includes('dinero') || txt.includes('plata') || txt.includes('regal') || 
                 txt.includes('gratis') || txt.includes('fiado') || txt.includes('dame') || 
