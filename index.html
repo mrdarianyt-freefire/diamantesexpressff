@@ -25,7 +25,6 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
-            user-select: none;
         }
 
         body {
@@ -184,6 +183,7 @@
             font-size: 0.95rem;
             outline: none;
             transition: 0.3s;
+            user-select: text; /* Permite seleccionar y copiar texto en los inputs */
         }
 
         .form-control:focus {
@@ -575,6 +575,7 @@
             flex-direction: column;
             gap: 10px;
             font-size: 0.85rem;
+            user-select: text; /* Permite seleccionar y copiar mensajes del chat */
         }
 
         .msg {
@@ -614,6 +615,7 @@
             padding: 8px;
             font-size: 0.85rem;
             outline: none;
+            user-select: text; /* Permite seleccionar texto en el input */
         }
 
         .chat-send-btn {
@@ -1174,19 +1176,24 @@
                 return "El jefe supremo, creador y dueño absoluto de esto es <b>MR DARIAN YT</b> 👑, un crack total. ¡Y los admins te atienden volando al tocar el botón verde de WhatsApp!";
             }
 
-            // 3. INTENCIÓN DE POBREZA / REGALOS / FIADO / DESCUENTOS (Prioridad 3)
+            // 2.5 FIX: CLIENTE QUE DICE QUE NO TIENE SALDO / DINERO SUFICIENTE
             if (
-                txt.includes('dinero') || txt.includes('plata') || txt.includes('regal') || 
-                txt.includes('gratis') || txt.includes('fiado') || txt.includes('dame') || 
-                txt.includes('donam') || txt.includes('rebaja') || txt.includes('descuento') || 
-                txt.includes('pobre') || txt.includes('sin un kilo') || txt.includes('110 gratis') ||
-                txt.includes('barato') || txt.includes('caro') || txt.includes('efectivo') ||
-                txt.includes('regala') || txt.includes('regalamelo') || txt.includes('regalarme') ||
-                (txt.includes('no') && (txt.includes('tengo') || txt.includes('puedo') || txt.includes('sumo') || txt.includes('hay')))
+                (txt.includes('no tengo') || txt.includes('falta')) && 
+                (txt.includes('saldo') || txt.includes('dinero') || txt.includes('plata') || txt.includes('cup') || txt.includes('efectivo'))
+            ) {
+                return "🛒 ¡No te preocupes, bro! Puedes revisar los paquetes más económicos arriba como el de 110 Diamantes. Si necesitas ayuda con el método de pago, arma tu pedido y consúltalo directo con el admin por WhatsApp.";
+            }
+
+            // 3. INTENCIÓN DE PEDIR REGALOS / FIADO / DESCUENTOS BROMAS (Prioridad 3)
+            if (
+                txt.includes('regal') || txt.includes('gratis') || txt.includes('fiado') || 
+                txt.includes('dame') || txt.includes('donam') || txt.includes('rebaja') || 
+                txt.includes('descuento') || txt.includes('pobre') || txt.includes('110 gratis') ||
+                txt.includes('regala') || txt.includes('regalamelo') || txt.includes('regalarme')
             ) {
                 const pool = [
                     "Jajaja ¡quisieras, crack! 😜 💎 Si le regalo diamantes a todos, el jefe MR DARIAN YT me deshusa el procesador. ¡Mira los precios de la web, si ya están baratísimos! 🔥",
-                    "¿Sin plata, sin dinero o sin un kilo, bro? 😭 Te entiendo perfectamente, ¡a todos nos pasa! Pero junta un poquitico y aprovecha la recarga de 110 que te sale súper económica arriba. 🔥",
+                    "¿Buscando regalitos, bro? 😭 Te entiendo, pero junta un poquitico y aprovecha la recarga de 110 que te sale súper económica arriba. 🔥",
                     "¿Regalos, rebajas o diamantes gratis? ¡Ojalá Garena me regalara la ropa del pase veterano! 🤖😂 Aquí todo es 100% legal, junta la platica y pídelos en la web.",
                     "Hermano, si te fío o te regalo diamantes me quedo comiendo cables y jugando con datos móviles de 1kbps 📉😂. ¡Apoya el negocio de MR DARIAN YT!"
                 ];
