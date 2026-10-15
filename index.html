@@ -1146,10 +1146,24 @@
             return arr[Math.floor(Math.random() * arr.length)];
         }
 
-        /* MOTOR INTELIGENTE LOCAL CON PRIORIDADES CORREGIDAS */
+        /* MOTOR INTELIGENTE LOCAL CON PRIORIDADES PERFECTAS */
         function getBotResponse(txt) {
             
-            // 1. PRIORIDAD MÁXIMA: CREADOR / DUEÑO (MR DARIAN YT)
+            // 1. PRIORIDAD MÁXIMA: AGRADECIMIENTOS Y DESPEDIDAS
+            if (
+                txt.includes('gracias') || txt.includes('gracia') || txt.includes('grax') || 
+                txt.includes('chao') || txt.includes('adios') || txt.includes('adiós') || 
+                txt.includes('nos vemos') || txt.includes('graciass')
+            ) {
+                const agradecimientos = [
+                    "¡De nada, máquina! 🔥 Para eso estamos. Cuidate y suerte en tus partidas. 💎🎮",
+                    "¡A ti, leyenda! 😎 Si te surge cualquier duda o quieres pedir, aquí estaré. ¡A reventar clasificatoria!",
+                    "¡Dale, bro! Un placer ayudarte. ¡Que tengas excelente día! 🚀💎"
+                ];
+                return getRandom(agradecimientos);
+            }
+
+            // 2. CREADOR / DUEÑO (MR DARIAN YT)
             if (
                 txt.includes('creador') || txt.includes('creo') || txt.includes('creadora') || 
                 txt.includes('darian') || txt.includes('dueño') || txt.includes('inventó') || 
@@ -1159,7 +1173,7 @@
                 return "El jefe supremo, creador y dueño absoluto de esto es <b>MR DARIAN YT</b> 👑, un crack total. ¡Y los admins te atienden volando al tocar el botón verde de WhatsApp!";
             }
 
-            // 2. SALUDOS GENERALES
+            // 3. SALUDOS GENERALES
             if (
                 txt.includes('hola') || txt.includes('buenas') || txt.includes('buenos') || 
                 txt.includes('tardes') || txt.includes('dias') || txt.includes('días') || 
@@ -1174,7 +1188,7 @@
                 return getRandom(saludos);
             }
 
-            // 3. INTENCIÓN DE POBREZA / FALTA DE DINERO / REGALOS / FIADO / DESCUENTOS
+            // 4. INTENCIÓN DE POBREZA / FALTA DE DINERO / REGALOS / FIADO / DESCUENTOS
             if (
                 txt.includes('dinero') || txt.includes('plata') || txt.includes('regal') || 
                 txt.includes('gratis') || txt.includes('fiado') || txt.includes('dame') || 
@@ -1193,7 +1207,7 @@
                 return getRandom(pool);
             }
 
-            // 4. INTENCIÓN DE RIMAS, POEMAS Y CALIDAD DE LA PÁGINA
+            // 5. INTENCIÓN DE RIMAS, POEMAS Y CALIDAD DE LA PÁGINA
             if (
                 txt.includes('mejor') || txt.includes('rima') || txt.includes('poema') || 
                 txt.includes('pagina') || txt.includes('página') || txt.includes('tienda') || 
@@ -1202,7 +1216,7 @@
                 return "<i>¿Que cuál es la mejor web para recargar?<br>¡Pues Diamantes Express es la que manda a cantar!<br>Precios baratos, entrega veloz,<br>¡aquí te tratamos con amor y con dos!<br>No busques más por ahí, mi hermano,<br>que los mejores diamantes te los damos directo a la mano. 💎🔥</i>";
             }
 
-            // 5. INTENCIÓN DE VELOCIDAD, TIEMPOS Y HORARIOS
+            // 6. INTENCIÓN DE VELOCIDAD, TIEMPOS Y HORARIOS
             if (
                 txt.includes('tarda') || txt.includes('demora') || txt.includes('tiempo') || 
                 txt.includes('rapido') || txt.includes('rápido') || txt.includes('velocidad') || 
@@ -1213,7 +1227,7 @@
                 return "¡Más rápido que un corredor con Alok! ⚡ Las recargas caen en menos de 5 minutos después de confirmar tu pago con el admin.";
             }
 
-            // 6. INTENCIÓN DE MÉTODOS DE PAGO
+            // 7. INTENCIÓN DE MÉTODOS DE PAGO
             if (
                 txt.includes('pago') || txt.includes('pagar') || txt.includes('tarjeta') || 
                 txt.includes('saldo') || txt.includes('cup') || txt.includes('transferencia') || 
@@ -1224,7 +1238,7 @@
                 return "Aceptamos 📱 <b>Saldo Móvil</b> y 💳 <b>Tarjeta CUP</b> de forma directa en Cuba. ¡E incluso puedes pedir de ambos en el mismo carrito y la web te separa los totales!";
             }
 
-            // 7. INTENCIÓN DE CÓMO COMPRAR Y PAQUETES
+            // 8. INTENCIÓN DE CÓMO COMPRAR Y PAQUETES
             if (
                 txt.includes('compro') || txt.includes('comprar') || txt.includes('pido') || 
                 txt.includes('pedir') || txt.includes('pedido') || txt.includes('pasos') || 
@@ -1236,7 +1250,7 @@
                 return "Es facilísimo, crack: 1️⃣ Pon tu ID y Nombre de Free Fire. 2️⃣ Selecciona las cantidades con los botones (+). 3️⃣ Toca el botón verde de pedir por WhatsApp. 🛒";
             }
 
-            // 8. INTENCIÓN DE SEGURIDAD, CONFIANZA Y REFERENCIAS
+            // 9. INTENCIÓN DE SEGURIDAD, CONFIANZA Y REFERENCIAS
             if (
                 txt.includes('seguro') || txt.includes('estafa') || txt.includes('estafador') || 
                 txt.includes('confiable') || txt.includes('confianza') || txt.includes('garantia') || 
@@ -1247,7 +1261,7 @@
                 return "¡100% Seguro y Confiable! 🛡️ Únete a nuestro canal oficial de WhatsApp abajo en la web para ver todas las referencias reales de nuestros clientes.";
             }
 
-            // 9. RESPUESTA DINÁMICA POR DEFECTO
+            // 10. RESPUESTA DINÁMICA POR DEFECTO
             const respuestasLocas = [
                 "¡Aparato, esa pregunta me dejó pensando como bot en zona segura! 🤖😂 Arma tu pedido arriba y escríbele directo a los admins por WhatsApp para que te atiendan al toque.",
                 "¡Jajaja tremendo headshot con esa pregunta! 🎯💥 Para cualquier duda personalizada con tu cuenta, toca el botón verde de WhatsApp.",
