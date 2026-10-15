@@ -694,8 +694,8 @@
             <div class="form-group" style="margin-top: 15px;">
                 <label for="whatsapp-contact"><i class="fa-solid fa-headset"></i> Atendido por:</label>
                 <select id="whatsapp-contact" class="form-control">
-                    <option value="5350299740">🇨🇺 Paga con Saldo / Tarjeta (Cuba) - 5350299740</option>
-                    <option value="17059950436">🇺🇸 Soporte / Dudas (USA) - 17059950436</option>
+                    <option value="5350299740">🇨🇺 ADMIN 1</option>
+                    <option value="17059950436">🇺🇸 ADMIN 2</option>
                 </select>
             </div>
         </section>
@@ -1195,7 +1195,7 @@
             // NIVEL 8 - TIEMPO Y CONFIANZA
             if (/(tarda|demora|minutos|cuando llega|rapido)/.test(txt)) return "⚡ ¡Más rápido que Alok corriendo! Cae en menos de 5 minutos después de que confirmes el pago con el admin.";
             if (/(seguro|estafa|confiable|referencia|prueba|garantia)/.test(txt)) return "🛡️ 100% Seguro y legal. Solo pedimos ID, nunca contraseña. Mira todas las pruebas reales de clientes en nuestra Comunidad oficial abajo en la web. ¡Más de 1000 recargas!";
-            if (/(admin 1|admin 2|quien atiende|cuba|usa)/.test(txt)) return "🎧 Tenemos 2: 🇨🇺 5350299740 para pagos de Cuba (Saldo y Tarjeta) que es el principal, y 🇺🇸 +1 (705) 995-0436 para soporte. Toca el que necesites.";
+            if (/(admin 1|admin 2|quien atiende|cuba|usa)/.test(txt)) return "🎧 Tenemos 2: 🇨🇺 ADMIN 1 y 🇺🇸 ADMIN 2. Toca el que prefieras en la lista para mandar tu pedido.";
             
             // NIVEL 9 - ERRORES WEB
             if (/(no abre whatsapp|no funciona boton|error|no envia)/.test(txt)) return "⚠️ El botón verde no se activa si falta ID, Nombre o no le diste (+) a ningún paquete. Revisa esos 3 pasos arriba.";
@@ -1206,7 +1206,7 @@
             if (/(mejor pagina|rima|poema|tienda buena)/.test(txt)) return "<i>¿Cuál es la mejor web para recargar?<br>¡Diamantes Express te viene a salvar!<br>Barato, rápido y sin estafa,<br>¡Con MR DARIAN YT que no te falla! 💎🔥</i>";
 
             // DEFAULT
-            const r = ["¡Esa me dejó en zona segura! 🤖😂 Arma tu pedido arriba y dale al botón verde de WhatsApp para que te atienda un admin real al toque.", "¡Tremendo headshot de pregunta! 🎯 Para tu cuenta específica, habla directo con el admin de Cuba por WhatsApp, te responde al instante."];
+            const r = ["¡Esa me dejó en zona segura! 🤖😂 Arma tu pedido arriba y dale al botón verde de WhatsApp para que te atienda un admin real al toque.", "¡Tremendo headshot de pregunta! 🎯 Para tu cuenta específica, habla directo con el admin por WhatsApp, te responde al instante."];
             return getRandom(r);
         }
     </script>
