@@ -906,7 +906,6 @@
                 <div class="summary-title"><i class="fa-solid fa-cart-shopping"></i> Resumen Total:</div>
                 <div id="summary-text" style="color: var(--text-muted); font-size: 0.85rem;">Ningún paquete seleccionado.</div>
                 <div id="summary-total" style="font-family: 'Orbitron', sans-serif; font-weight: 800; color: var(--accent); margin-top: 6px; font-size: 1.05rem;">Total: 0 CUP</div>
-                <p style="font-size:0.7rem; color:#a0aec0; margin-top:8px;">💡 ¿Solo tienes 200 CUP? Escríbenos igual, vemos qué se puede hacer.</p>
             </div>
 
             <!-- Pasos breves -->
@@ -1221,9 +1220,9 @@
             if (txt.includes('1166')) return "💎 1166 Diamantes = 2,300 CUP por Saldo Móvil / 9,500 CUP por Tarjeta CUP.";
             if (txt.includes('2398')) return "💎 2398 Diamantes = 4,600 CUP por Saldo Móvil / 19,000 CUP por Tarjeta CUP.";
 
-            // 9. CLIENTES CON POCO DINERO / NEGOCIACIÓN DE PRESUPUESTO
-            if (/(no tengo dinero|tengo poco saldo|no me alcanza|solo tengo|tengo 200|tengo 100|tengo 50|me falta plata|me haces una rebaja|se puede fiado|me dejas mas barato)/.test(txt)) {
-                return "🛒 ¡Tranquilo bro! La oferta mínima es 110 Diamantes x 230 CUP por Saldo Móvil. Si te faltan unos pesitos, arma tu pedido arriba y háblale al ADMIN 1 por WhatsApp, a ver qué solución te da.";
+            // 9. PRECIOS FIJOS Y NO FIADO
+            if (/(no tengo dinero|tengo poco saldo|no me alcanza|solo tengo|tengo 200|tengo 100|tengo 50|me falta plata|me haces una rebaja|se puede fiado|me dejas mas barato|descuento)/.test(txt)) {
+                return "💎 <b>Precios Fijos:</b> Nuestros precios son fijos y no hacemos rebajas ni fiado bro. La oferta mínima es de 110 Diamantes por 230 CUP en Saldo Móvil o 950 CUP por Tarjeta CUP.";
             }
 
             // 10. HORARIOS DE ATENCIÓN Y CONTACTO
